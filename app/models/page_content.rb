@@ -23,6 +23,9 @@ class PageContent < AddMissingTranslation
 
   validates :name, presence: :true, uniqueness: :true
 
+  #######################
+  ## SCOPES
+  scope :only_title, -> { with_translations(I18n.locale).select('page_contents.name, page_content_translations.title') }
 
   #######################
   #######################

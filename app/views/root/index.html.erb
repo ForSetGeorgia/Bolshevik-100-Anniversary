@@ -1,1 +1,31 @@
 <% page_title t 'shared.common.name' %>
+
+<ul>
+<% @stories.each do |story| %>
+  <% story_class = story.is_published? ? 'active' : '' %>
+  <li class="<%= story_class %>">
+    <%= image_tag story.image_homepage(:thumb) %>
+    <br />
+    <% if story.is_published? %>
+      <%= link_to story_show_path(story) do %>
+        <%= story.title %>
+        (<%= story.published_at %>)
+      <% end %>
+    <% else %>
+      <%= story.title %>
+      (<%= story.published_at %>)
+    <% end %>
+  </li>
+<% end %>
+
+<br />
+<br />
+<br />
+<br />
+
+<div>
+<%= link_to @about.title, about_path %>
+</div>
+<div>
+<%= link_to @about_eurasianet.title, about_eurasianet_path %>
+</div>

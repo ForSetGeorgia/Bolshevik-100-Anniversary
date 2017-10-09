@@ -30,3 +30,20 @@ if ENV['create_user_accounts'].present? && !Rails.env.production?
   end
 end
 
+# load page content records with placeholder text
+# project about
+PageContent.find_or_create_by(name: 'about') do |pc|
+    puts 'creating page content for about'
+    pc.title = 'About Red Legacy'
+    pc.content = '<p>...</p>'
+end
+
+# load page content records with placeholder text
+# eurasianet about
+PageContent.find_or_create_by(name: 'about_eurasianet') do |pc|
+    puts 'creating page content for about eurasianet'
+    pc.title = 'About EurasiaNet'
+    pc.content = '<p>....</p>'
+end
+
+

@@ -23,7 +23,10 @@ Rails.application.routes.draw do
     end
 
     root 'root#index'
+    get '/stories' => 'root#stories'
+    get '/stories/:id' => 'root#story_show', as: 'story_show'
     get '/about' => 'root#about'
+    get '/about_eurasianet' => 'root#about_eurasianet'
 
     # handles /en/fake/path/whatever
     get '*path', to: redirect("/#{I18n.default_locale}")

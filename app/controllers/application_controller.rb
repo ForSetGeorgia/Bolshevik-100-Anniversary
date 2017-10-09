@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   private :set_locale
 
+  def set_global_variables
+    # indicate if the page title should be shown on the page
+    # if false, then it will only be used in <title> tag
+    @show_page_title = true
+  end
+  before_action :set_global_variables
+  private :set_global_variables
+
   def default_url_options(options = {})
     { locale: I18n.locale }.merge options
   end
