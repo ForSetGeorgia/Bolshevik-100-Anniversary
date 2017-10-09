@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
     post '/users', to: 'users#create'
 
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :users, constraints: { format: :html }
       resources :page_contents, constraints: { format: :html }
+      resources :stories, constraints: { format: :html }
     end
 
     root 'root#index'

@@ -1,0 +1,81 @@
+<% object = @story %>
+<%= semantic_form_for [:admin,object], html: {multipart: true} do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+      <%= f.input "title_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.title'),
+                         language: enabled_locale_name) %>
+      <%= f.input "author_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.author'),
+                         language: enabled_locale_name) %>
+      <%= f.input "content_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.content'),
+                         language: enabled_locale_name),
+                  input_html: { class: 'js-become-rich-text-editor' } %>
+      <%= f.input "image_credit_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.image_credit'),
+                         language: enabled_locale_name) %>
+      <%= f.input "image_caption_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.image_caption'),
+                         language: enabled_locale_name) %>
+    <% end %>
+
+    <%= f.input :is_published %>
+    <%= f.input :published_at, as: :string, input_html: { style: 'width: 10em;' } %>
+
+    <hr />
+
+    <h2><%= t('.images') %></h2>
+
+    <div class="file input optional form-group" id="story_image_homepage_input">
+      <span class="form-label">
+        <label for="story_image_homepage" class=" control-label"><%= t('activerecord.attributes.story.image_homepage') %></label>
+      </span>
+      <% if object.image_homepage.exists? %>
+        <%= image_tag(object.image_homepage.url('thumb')) %>
+      <% end %>
+      <span class="form-wrapper">
+        <input accept=".jpg,.jpeg,.png,.gif" id="story_image_homepage" name="story[image_homepage]" type="file">
+      </span>
+    </div>
+
+    <div class="file input optional form-group" id="story_image_story_input">
+      <span class="form-label">
+        <label for="story_image_story" class=" control-label"><%= t('activerecord.attributes.story.image_story') %></label>
+      </span>
+      <% if object.image_story.exists? %>
+        <%= image_tag(object.image_story.url('thumb')) %>
+      <% end %>
+      <span class="form-wrapper">
+        <input accept=".jpg,.jpeg,.png,.gif" id="story_image_story" name="story[image_story]" type="file">
+      </span>
+    </div>
+
+    <div class="file input optional form-group" id="story_image_share_input">
+      <span class="form-label">
+        <label for="story_image_share" class=" control-label"><%= t('activerecord.attributes.story.image_share') %></label>
+      </span>
+      <% if object.image_share.exists? %>
+        <%= image_tag(object.image_share.url('thumb')) %>
+      <% end %>
+      <span class="form-wrapper">
+        <input accept=".jpg,.jpeg,.png,.gif" id="story_image_share" name="story[image_share]" type="file">
+      </span>
+    </div>
+
+
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>

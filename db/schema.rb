@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420110830) do
+ActiveRecord::Schema.define(version: 20171009002425) do
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.string   "data_fingerprint",  limit: 255
+    t.string   "type",              limit: 30
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "ckeditor_assets", ["type"], name: "index_ckeditor_assets_on_type", using: :btree
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope",          limit: 255
+    t.string   "locale",         limit: 255
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["locale"], name: "index_friendly_id_slugs_on_locale", using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "locale"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_locale", length: {"slug"=>140, "sluggable_type"=>nil, "locale"=>2}, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope", "locale"], name: "index_friendly_id_slugs_uniqueness", unique: true, length: {"slug"=>70, "sluggable_type"=>nil, "scope"=>70, "locale"=>2}, using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "page_content_translations", force: :cascade do |t|
     t.integer  "page_content_id", limit: 4,     null: false
@@ -36,6 +65,47 @@ ActiveRecord::Schema.define(version: 20160420110830) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "stories", force: :cascade do |t|
+    t.boolean  "is_published",                            default: false
+    t.date     "published_at"
+    t.string   "slug",                        limit: 255
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.string   "image_homepage_file_name",    limit: 255
+    t.string   "image_homepage_content_type", limit: 255
+    t.integer  "image_homepage_file_size",    limit: 4
+    t.datetime "image_homepage_updated_at"
+    t.string   "image_share_file_name",       limit: 255
+    t.string   "image_share_content_type",    limit: 255
+    t.integer  "image_share_file_size",       limit: 4
+    t.datetime "image_share_updated_at"
+    t.string   "image_story_file_name",       limit: 255
+    t.string   "image_story_content_type",    limit: 255
+    t.integer  "image_story_file_size",       limit: 4
+    t.datetime "image_story_updated_at"
+  end
+
+  add_index "stories", ["is_published", "published_at"], name: "index_stories_on_is_published_and_published_at", using: :btree
+  add_index "stories", ["slug"], name: "index_stories_on_slug", unique: true, using: :btree
+
+  create_table "story_translations", force: :cascade do |t|
+    t.integer  "story_id",      limit: 4,     null: false
+    t.string   "locale",        limit: 255,   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "title",         limit: 255
+    t.text     "content",       limit: 65535
+    t.string   "author",        limit: 255
+    t.string   "image_caption", limit: 255
+    t.string   "image_credit",  limit: 255
+    t.string   "slug",          limit: 255
+  end
+
+  add_index "story_translations", ["locale"], name: "index_story_translations_on_locale", using: :btree
+  add_index "story_translations", ["slug"], name: "index_story_translations_on_slug", using: :btree
+  add_index "story_translations", ["story_id"], name: "index_story_translations_on_story_id", using: :btree
+  add_index "story_translations", ["title"], name: "index_story_translations_on_title", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

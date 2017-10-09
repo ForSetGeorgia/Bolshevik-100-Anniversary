@@ -1,0 +1,19 @@
+---
+en:
+  activerecord:
+    attributes:
+      story:
+        title: Title
+        content: Content
+        author: Author
+        image_caption: Image Caption
+        image_credit: Image Credit
+        is_published: Is Published?
+        published_at: Published Date
+        image_homepage: Homepage Image
+        image_share: Share Image
+        image_story: Story Image
+    models:
+      story:
+        one: Story
+        other: Stories

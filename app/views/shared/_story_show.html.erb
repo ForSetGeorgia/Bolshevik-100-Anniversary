@@ -1,0 +1,29 @@
+<div class="story-author">
+  <%= t('.by') %>: <%= @story.author %>
+</div>
+
+<% if @story.published_at.present? %>
+  <div class="story-date">
+    <%= l @story.published_at %>
+  </div>
+<% end %>
+
+<% if @story.image_story.exists? %>
+  <div class="image-story">
+    <%= image_tag @story.image_story.url %>
+  </div>
+  <% if @story.image_caption.present? %>
+    <div class="image-caption">
+      <%= @story.image_caption %>
+    </div>
+  <% end %>
+  <% if @story.image_credit.present? %>
+    <div class="image-credit">
+      <%= t('.credit') %>: <%= @story.image_caption %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="stort-content">
+  <%= simple_format_no_tags(@story.content) %>
+</div>

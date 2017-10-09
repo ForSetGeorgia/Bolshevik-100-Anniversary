@@ -20,22 +20,27 @@ en:
     common:
       account: Account
       actions: Actions
-      jumpstart:
-        slogan: JumpStart Georgia - Informing Communities with Data and Design
-      name: Rails Starter Template
+      forset:
+        slogan: ForSet - Communicating with Data
+      name: Red Legacy
       description: This is a description of the project that will appear in the meta tags.
+      'no': 'No'
+      'yes': 'Yes'
     links:
       page_contents: Edit Page Text
       admin: Admin Section
+      stories: Stories
     labels:
       translated_field: "%{field} (%{language})"
     locale:
       short:
         en: En
+        ru: Ru
         ka: "ქა"
       long:
         en: English
         ka: "ქართული"
+        ru: "ру́сский"
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.
@@ -45,3 +50,6 @@ en:
     prompts:
       confirm: Are you sure?
       forgot_password: Forgot your password?
+    story_show:
+      by: By
+      credit: Credit

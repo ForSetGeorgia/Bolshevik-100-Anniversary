@@ -3,3 +3,6 @@ en:
   admin:
     index:
       title: Admin Section
+    stories:
+      form:
+        images: Images

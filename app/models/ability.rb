@@ -27,6 +27,7 @@ class Ability
     can [:read, :edit, :update], PageSection
     can :manage, User
     can :manage, Role
+    can :manage, Story
     cannot :manage, User, role: { name: 'super_admin' }
     cannot :manage, Role, name: 'super_admin'
   end
