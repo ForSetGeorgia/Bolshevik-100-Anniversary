@@ -3,7 +3,7 @@
   <%-
     title = (content_for?(:page_title) && yield(:page_title) != t('shared.common.name') ? "#{strip_tags_nbsp(yield(:page_title))} | #{t('shared.common.name')}" :
               t('shared.common.name')).html_safe
-    desc = t("shared.common.description").html_safe
+    desc = content_for?(:meta_description) ? yield(:meta_description) : t("shared.common.description").html_safe
   -%>
 
   <meta charset="utf-8">
@@ -14,8 +14,12 @@
   <meta property="og:title" content="<%= title %>">
   <meta name="description" content="<%= desc %>">
   <meta property="og:description" content="<%= desc %>" />
-  <meta property="og:type" content="non_profit" />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="<%= current_url %>" />
+
+  <% if content_for?(:meta_image) %>
+    <meta property="og:image" content="<%= full_url(yield(:meta_image)) %>" />
+  <% end %>
   <!--meta property="og:image" content="<%= image_url("shareimage.png") %>" /-->
   <meta property="og:site_name" content="<%= t("shared.common.name") %>" />
 

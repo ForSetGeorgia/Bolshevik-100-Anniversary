@@ -4,6 +4,14 @@ module ApplicationHelper
     content_for(:page_title) { page_title.html_safe }
   end
 
+  def meta_description(meta_description)
+    content_for(:meta_description) { meta_description.html_safe }
+  end
+
+  def meta_image(meta_image)
+    content_for(:meta_image) { meta_image.html_safe }
+  end
+
   def current_url
     "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
   end
