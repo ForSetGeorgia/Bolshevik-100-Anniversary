@@ -53,3 +53,6 @@ en:
     story_show:
       by: By
       credit: Credit
+      next: Next Story
+      previous: Previous Story
+      print: Save as PDF or print the story

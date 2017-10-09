@@ -1,3 +1,6 @@
+<%= show_pubic_links ||= false %>
+
+
 <div class="story-author">
   <%= t('.by') %>: <%= @story.author %>
 </div>
@@ -22,6 +25,19 @@
       <%= t('.credit') %>: <%= @story.image_caption %>
     </div>
   <% end %>
+<% end %>
+
+<% if show_pubic_links == true %>
+  <ul>
+    <li>
+      <a href="javascript:window.print()"><%= t('.print') %></a>
+    </li>
+    <li>
+      <%= link_to t('.previous'), story_show_path(@previous), title: @previous.title if @previous.present? %>
+    </li>
+    <li>
+      <%= link_to t('.next'), story_show_path(@next), title: @next.title if @next.present? %>
+    </li>
 <% end %>
 
 <div class="stort-content">

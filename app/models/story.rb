@@ -95,6 +95,7 @@ class Story < AddMissingTranslation
   ## SCOPES
   scope :published, -> { where(is_published: true) }
   scope :sorted, -> { with_translations(I18n.locale).order('stories.published_at asc, story_translations.title asc') }
+  scope :only_title, -> { with_translations(I18n.locale).select('stories.slug, stories.id, story_translations.title, story_translations.slug') }
 
 
   #######################
