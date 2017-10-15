@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009002425) do
+ActiveRecord::Schema.define(version: 20171015202330) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false
@@ -84,22 +84,30 @@ ActiveRecord::Schema.define(version: 20171009002425) do
     t.string   "image_story_content_type",    limit: 255
     t.integer  "image_story_file_size",       limit: 4
     t.datetime "image_story_updated_at"
+    t.integer  "sort_order",                  limit: 1,   default: 1
   end
 
   add_index "stories", ["is_published", "published_at"], name: "index_stories_on_is_published_and_published_at", using: :btree
   add_index "stories", ["slug"], name: "index_stories_on_slug", unique: true, using: :btree
+  add_index "stories", ["sort_order"], name: "index_stories_on_sort_order", using: :btree
 
   create_table "story_translations", force: :cascade do |t|
-    t.integer  "story_id",      limit: 4,     null: false
-    t.string   "locale",        limit: 255,   null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "title",         limit: 255
-    t.text     "content",       limit: 65535
-    t.string   "author",        limit: 255
-    t.string   "image_caption", limit: 255
-    t.string   "image_credit",  limit: 255
-    t.string   "slug",          limit: 255
+    t.integer  "story_id",            limit: 4,     null: false
+    t.string   "locale",              limit: 255,   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "title",               limit: 255
+    t.text     "content",             limit: 65535
+    t.string   "author",              limit: 255
+    t.string   "image_caption",       limit: 255
+    t.string   "image_credit",        limit: 255
+    t.string   "slug",                limit: 255
+    t.string   "title_share",         limit: 255
+    t.string   "description_share",   limit: 255
+    t.string   "title_home",          limit: 255
+    t.string   "author_organization", limit: 255
+    t.string   "subheader",           limit: 255
+    t.text     "footnotes",           limit: 65535
   end
 
   add_index "story_translations", ["locale"], name: "index_story_translations_on_locale", using: :btree

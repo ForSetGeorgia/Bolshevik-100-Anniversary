@@ -4,6 +4,10 @@ module ApplicationHelper
     content_for(:page_title) { page_title.html_safe }
   end
 
+  def meta_title(meta_title)
+    content_for(:meta_title) { meta_title.html_safe }
+  end
+
   def meta_description(meta_description)
     content_for(:meta_description) { meta_description.html_safe }
   end

@@ -2,8 +2,19 @@
 
   <%-
     title = (content_for?(:page_title) && yield(:page_title) != t('shared.common.name') ? "#{strip_tags_nbsp(yield(:page_title))} | #{t('shared.common.name')}" :
-              t('shared.common.name')).html_safe
+              "#{t('shared.common.name')} - #{t('shared.common.slogan')}").html_safe
+
+    share_title = content_for?(:meta_title) ? yield(:meta_title) : title
     desc = content_for?(:meta_description) ? yield(:meta_description) : t("shared.common.description").html_safe
+
+    og_type = if params[:controller] == 'root' && params[:action] == 'index'
+      'main'
+    elsif params[:controller] == 'root' && params[:action] == 'story_show'
+      'article'
+    else
+      'page'
+    end
+
   -%>
 
   <meta charset="utf-8">
@@ -11,17 +22,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
 
-  <meta property="og:title" content="<%= title %>">
+  <meta property="og:title" content="<%= share_title %>">
   <meta name="description" content="<%= desc %>">
   <meta property="og:description" content="<%= desc %>" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="<%= og_type%>" />
   <meta property="og:url" content="<%= current_url %>" />
+  <meta property="og:site_name" content="<%= t("shared.common.name") %>" />
+
+  <meta name="twitter:title" content="<%= share_title %>" />
+  <meta name="twitter:description" content="<%= desc %>" />
+  <meta name="twitter:url" content="<%= current_url %>" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@EurasiaNet">
 
   <% if content_for?(:meta_image) %>
     <meta property="og:image" content="<%= full_url(yield(:meta_image)) %>" />
+    <meta name="twitter:image" content="<%= full_url(yield(:meta_image)) %>" />
   <% end %>
   <!--meta property="og:image" content="<%= image_url("shareimage.png") %>" /-->
-  <meta property="og:site_name" content="<%= t("shared.common.name") %>" />
+  <!--meta property="twitter:images0" content="<%= image_url("shareimage.png") %>" /-->
 
 
   <%= csrf_meta_tags %>

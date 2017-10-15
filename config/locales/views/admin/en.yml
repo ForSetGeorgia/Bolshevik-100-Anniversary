@@ -6,3 +6,9 @@ en:
     stories:
       form:
         images: Images
+  shared:
+    form:
+      translated_inputs:
+        home: Story Content for Home Page
+        share: Share Content
+        image: Image Content

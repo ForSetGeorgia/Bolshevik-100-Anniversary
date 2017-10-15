@@ -26,7 +26,10 @@ class Story < AddMissingTranslation
   #######################
   ## TRANSLATIONS
 
-  translates :title, :content, :author, :image_caption, :image_credit, :slug, :fallbacks_for_empty_translations => true
+  translates :title, :content, :author, :image_caption, :image_credit, :slug,
+              :title_share, :description_share, :title_home, :author_organization,
+              :subheader, :footnotes,
+              :fallbacks_for_empty_translations => true
   # Allows reference of specific translations, i.e. post.title_az
   # or post.title_en
   globalize_accessors
@@ -94,9 +97,19 @@ class Story < AddMissingTranslation
   #######################
   ## SCOPES
   scope :published, -> { where(is_published: true) }
-  scope :sorted, -> { with_translations(I18n.locale).order('stories.published_at asc, story_translations.title asc') }
+  scope :sorted, -> { with_translations(I18n.locale).order('stories.sort_order asc, stories.published_at asc, story_translations.title asc') }
   scope :only_title, -> { with_translations(I18n.locale).select('stories.slug, stories.id, story_translations.title, story_translations.slug') }
 
+  #######################
+  ## METHODS
+
+  def author_info
+    x = self.author
+    if self.author_organization.present?
+      x << " (#{self.author_organization})"
+    end
+    return x
+  end
 
   #######################
   #######################

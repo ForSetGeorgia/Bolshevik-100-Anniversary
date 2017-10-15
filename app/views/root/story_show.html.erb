@@ -1,6 +1,7 @@
 <%
   page_title @story.title
-  meta_description strip_tags(@story.content)
+  meta_title strip_tags(@story.title_share)
+  meta_description strip_tags(@story.description_share)
   meta_image @story.image_share.url
 %>
 

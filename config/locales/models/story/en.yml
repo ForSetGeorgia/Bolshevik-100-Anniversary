@@ -4,12 +4,19 @@ en:
     attributes:
       story:
         title: Title
+        subheader: Subheader
         content: Content
+        footnotes: Footnotes
         author: Author
+        author_organization: Author Organization
+        title_home: Story Title on Home Page
+        title_share: Share Title
+        description_share: Share Description
         image_caption: Image Caption
         image_credit: Image Credit
         is_published: Is Published?
         published_at: Published Date
+        sort_order: Sort Order
         image_homepage: Homepage Image
         image_share: Share Image
         image_story: Story Image

@@ -8,9 +8,17 @@
                   label: t('shared.labels.translated_field',
                          field: t('activerecord.attributes.story.title'),
                          language: enabled_locale_name) %>
+      <%= f.input "subheader_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.subheader'),
+                         language: enabled_locale_name) %>
       <%= f.input "author_#{enabled_locale}",
                   label: t('shared.labels.translated_field',
                          field: t('activerecord.attributes.story.author'),
+                         language: enabled_locale_name) %>
+      <%= f.input "author_organization_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.author_organization'),
                          language: enabled_locale_name) %>
       <%= f.input "content_#{enabled_locale}",
                   as: :text,
@@ -18,6 +26,35 @@
                          field: t('activerecord.attributes.story.content'),
                          language: enabled_locale_name),
                   input_html: { class: 'js-become-rich-text-editor' } %>
+      <%= f.input "footnotes_#{enabled_locale}",
+                  as: :text,
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.footnotes'),
+                         language: enabled_locale_name),
+                  input_html: { class: 'js-become-rich-text-editor' } %>
+      <hr />
+      <h2><%= t('.home') %></h2>
+
+      <%= f.input "title_home_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.title_home'),
+                         language: enabled_locale_name) %>
+      <hr />
+      <h2><%= t('.share') %></h2>
+
+      <%= f.input "title_share_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.title_share'),
+                         language: enabled_locale_name) %>
+
+      <%= f.input "description_share_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.story.description_share'),
+                         language: enabled_locale_name) %>
+
+      <hr />
+      <h2><%= t('.image') %></h2>
+
       <%= f.input "image_credit_#{enabled_locale}",
                   label: t('shared.labels.translated_field',
                          field: t('activerecord.attributes.story.image_credit'),
@@ -28,6 +65,7 @@
                          language: enabled_locale_name) %>
     <% end %>
 
+    <%= f.input :sort_order %>
     <%= f.input :is_published %>
     <%= f.input :published_at, as: :string, input_html: { style: 'width: 10em;' } %>
 

@@ -1,9 +1,9 @@
 <% show_name = (can? :create, @page_content) ? true : false %>
 
 <%
-page_title t('.title',
-             label: t('activerecord.attributes.page_content.title'),
-             label_value: @page_content.title)
+page_title t('shared.common.show_title',
+             model: t('activerecord.page_content.story', count: 1),
+             title: @page_content.title)
 %>
 
 <div class='actions-container'>

@@ -23,9 +23,11 @@ en:
       forset:
         slogan: ForSet - Communicating with Data
       name: Red Legacy
+      slogan: Evaluating the 100th anniversary of the Bolshevik Revolution.
       description: This is a description of the project that will appear in the meta tags.
       'no': 'No'
       'yes': 'Yes'
+      show_title: "%{model}: %{title}"
     links:
       page_contents: Edit Page Text
       admin: Admin Section
@@ -56,3 +58,4 @@ en:
       next: Next Story
       previous: Previous Story
       print: Save as PDF or print the story
+      footnotes: Footnotes

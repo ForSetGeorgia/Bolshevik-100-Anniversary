@@ -1,8 +1,13 @@
-<%= show_pubic_links ||= false %>
+<% show_pubic_links ||= false %>
 
+<% if @story.subheader.present? %>
+  <h2 class="story-subheader">
+    <%= @story.subheader %>
+  </h2>
+<% end %>
 
 <div class="story-author">
-  <%= t('.by') %>: <%= @story.author %>
+  <%= t('.by') %>: <%= @story.author_info %>
 </div>
 
 <% if @story.published_at.present? %>
@@ -28,18 +33,28 @@
 <% end %>
 
 <% if show_pubic_links == true %>
-  <ul>
-    <li>
-      <a href="javascript:window.print()"><%= t('.print') %></a>
-    </li>
-    <li>
-      <%= link_to t('.previous'), story_show_path(@previous), title: @previous.title if @previous.present? %>
-    </li>
-    <li>
-      <%= link_to t('.next'), story_show_path(@next), title: @next.title if @next.present? %>
-    </li>
+  <div class="story-links">
+    <ul>
+      <li>
+        <a href="javascript:window.print()"><%= t('.print') %></a>
+      </li>
+      <li>
+        <%= link_to t('.previous'), story_show_path(@previous), title: @previous.title if @previous.present? %>
+      </li>
+      <li>
+        <%= link_to t('.next'), story_show_path(@next), title: @next.title if @next.present? %>
+      </li>
+    </ul>
+  </div>
 <% end %>
 
-<div class="stort-content">
+<div class="story-content">
   <%= simple_format_no_tags(@story.content) %>
 </div>
+
+<% if @story.footnotes.present? %>
+  <h2><%= t('.footnotes') %></h2>
+  <div class="story-footnotes">
+    <%= simple_format_no_tags(@story.footnotes) %>
+  </div>
+<% end %>
