@@ -5,7 +5,7 @@
 #  id                          :integer          not null, primary key
 #  is_published                :boolean          default(FALSE)
 #  published_at                :date
-#  slug                        :string(255)      not null
+#  slug                        :string(255)
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
 #  image_homepage_file_name    :string(255)
@@ -20,6 +20,7 @@
 #  image_story_content_type    :string(255)
 #  image_story_file_size       :integer
 #  image_story_updated_at      :datetime
+#  sort_order                  :integer          default(1)
 #
 
 class Story < AddMissingTranslation
