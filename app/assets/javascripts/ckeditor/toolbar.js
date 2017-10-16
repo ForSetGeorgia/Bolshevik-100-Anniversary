@@ -20,4 +20,6 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 
 	config.removeButtons = 'Flash,Table,Smiley,SpecialChar,PageBreak,Save,NewPage,Preview,Print,Templates,Source,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Styles,Format,Font,FontSize,TextColor,BGColor,ShowBlocks,About,Find,Replace';
+
+  config.extraPlugins = 'filebrowser';
 };
