@@ -1,4 +1,3 @@
-//= require ckeditor/init
 
 var RMRichTextArea = (function() {
   var exports = {};
@@ -33,6 +32,5 @@ var RMRichTextArea = (function() {
     );
 
   }
-
   return exports;
 })();
