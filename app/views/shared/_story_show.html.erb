@@ -49,12 +49,12 @@
 <% end %>
 
 <div class="story-content">
-  <%= simple_format_no_tags(@story.content) %>
+  <%= simple_format_no_tags(@story.content, {}, sanitize: false) %>
 </div>
 
 <% if @story.footnotes.present? %>
   <h2><%= t('.footnotes') %></h2>
   <div class="story-footnotes">
-    <%= simple_format_no_tags(@story.footnotes) %>
+    <%= simple_format_no_tags(@story.footnotes, {}, sanitize: false) %>
   </div>
 <% end %>

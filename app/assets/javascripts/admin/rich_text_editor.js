@@ -1,3 +1,52 @@
+// To generate configuration: http://ckeditor.com/latest/samples/toolbarconfigurator/index.html#basic
+// IMPORTANT - creating config here instead of in ckeditor/config.js because
+//             the code below that loads the editor does not see the config file
+var ckeditor_config = {
+  /* Filebrowser routes */
+  // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
+  filebrowserBrowseUrl: "/ckeditor/attachment_files",
+
+  // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Flash dialog.
+  filebrowserFlashBrowseUrl: "/ckeditor/attachment_files",
+
+  // The location of a script that handles file uploads in the Flash dialog.
+  filebrowserFlashUploadUrl: "/ckeditor/attachment_files",
+
+  // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Link tab of Image dialog.
+  filebrowserImageBrowseLinkUrl: "/ckeditor/pictures",
+
+  // The location of an external file browser, that should be launched when "Browse Server" button is pressed in the Image dialog.
+  filebrowserImageBrowseUrl: "/ckeditor/pictures",
+
+  // The location of a script that handles file uploads in the Image dialog.
+  filebrowserImageUploadUrl: "/ckeditor/pictures?",
+
+  // The location of a script that handles file uploads.
+  filebrowserUploadUrl: "/ckeditor/attachment_files",
+
+  allowedContent: true,
+
+  toolbarGroups: [
+    { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+    { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+    { name: 'forms', groups: [ 'forms' ] },
+    { name: 'tools', groups: [ 'tools' ] },
+    '/',
+    { name: 'styles', groups: [ 'styles' ] },
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+    { name: 'links', groups: [ 'links' ] },
+    { name: 'insert', groups: [ 'insert' ] },
+    '/',
+    { name: 'colors', groups: [ 'colors' ] },
+    { name: 'others', groups: [ 'others' ] },
+    { name: 'about', groups: [ 'about' ] }
+  ],
+
+  removeButtons: 'Flash,Table,Smiley,SpecialChar,PageBreak,Save,NewPage,Preview,Print,Templates,Source,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Styles,Font,TextColor,BGColor,ShowBlocks,About,Find,Replace'
+
+};
 
 var RMRichTextArea = (function() {
   var exports = {};
@@ -27,7 +76,7 @@ var RMRichTextArea = (function() {
         }
 
         // Initialize CKEditor instance
-        CKEDITOR.replace($(this).attr('id'));
+        CKEDITOR.replace($(this).attr('id'), ckeditor_config);
       }
     );
 
