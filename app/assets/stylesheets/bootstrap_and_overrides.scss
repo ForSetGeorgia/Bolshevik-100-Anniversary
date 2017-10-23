@@ -52,9 +52,9 @@
 @import 'bootstrap/popovers';
 @import 'bootstrap/carousel';
 
-// Utility classes
+// // Utility classes
 @import 'bootstrap/utilities';
 @import 'bootstrap/responsive-utilities';
 
-// Make gray-light a bit lighter
+// // Make gray-light a bit lighter
 $gray-light: lighten($gray-base, 70%);

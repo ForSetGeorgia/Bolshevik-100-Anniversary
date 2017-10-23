@@ -1,4 +1,4 @@
-<footer class='app-footer'>
+<footer>
   <%= link_to image_tag('forset.svg'),
               'https://forset.ge',
               target: '_blank',
@@ -7,5 +7,5 @@
   <%= link_to image_tag('eurasianet.svg'),
               "#{I18n.locale == :en ? 'eurasianet.org' : 'http://russian.eurasianet.org/'}",
               target: '_blank',
-              title: t('shared.common.eurasianet.slogan') %>
+              title: t('shared.common.eurasianet.slogan'), class: 'last' %>
 </footer>

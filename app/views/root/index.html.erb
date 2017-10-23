@@ -4,7 +4,7 @@
   <%- @stories.sorted.each_with_index do |story, story_i| %>
     <% story_classes =  [] %>
     <% story_classes << 'cs' unless story.is_published? %>
-    <%# story_classes << 'w' if story.is_wide? %>
+    <% story_classes << 'w' if story.is_wide? %>
     <% story_classes << 'vt' if story_i >= 6 # last 6 vertical-align -> top%>
     <% story_classes << 'wm' if story_i == 5 # story poster 6 and 12 without right margin %>
 
@@ -17,6 +17,7 @@
             <% if story.is_published? %>
               <%= link_to story_show_path(story), class: 'story-link' do %>
                 <div class="story-title"><%= story.title %></div>
+                <div class="story-explore"><%= t('shared.common.explore') %></div>
                 <div class="story-author"><%= t('shared.common.from') %><br /><span><%= story.author  %></div>
               <% end %>
             <% else %>

@@ -53,11 +53,10 @@
   <%
     # add extra styles if the user is signed in
     css = []
-    if user_signed_in?
-      css << 'admin_styles'
-    else
-      css << 'application'
-    end
+    css << 'admin_styles' if user_signed_in?
+
+    css << 'admin' if params[:controller] != 'root'
+    css << 'application'
   %>
   <%= stylesheet_link_tag  *(css), :media => "all" %>
 

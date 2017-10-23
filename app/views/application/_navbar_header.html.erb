@@ -1,17 +1,56 @@
 <nav>
-  <div class="nav-logo-wrapper">
-  <%= link_to image_tag('logo.svg'),
-              root_path,
-              target: '_blank',
-              title: t('.logo'), class: 'nav-logo' %>
-    <div class="nav-about">
-      <div class="nav-separator"></div>
-      <%= link_to t('.about'), about_path %>
+  <div class="nav-logo-outer">
+    <div class="nav-logo-inner">
+      <%= link_to root_path,
+                  target: '_blank',
+                  title: t('.logo'), class: 'nav-logo' do %>
+        <%= image_tag('logo.svg', class: 'large') %>
+        <%= image_tag('logo_small.svg', class: 'small') %>
+      <% end %>
+      <div class="nav-about">
+        <div class="nav-separator"></div>
+        <%= link_to t('.about'), about_path %>
+      </div>
     </div>
   </div>
   <div class="nav-slogan"><%= t('.slogan') %></div>
-  <ul class="nav-menu">
-    <% if user_signed_in? %>
+  <div class="nav-lang">
+    <ul class='nav-lang-list'>
+      <% ln = I18n.available_locales.length %>
+      <% I18n.available_locales.each_with_index do |locale, locale_i| %>
+        <li class='<%= "active" if I18n.locale == locale %>'>
+          <%= link_to t("shared.locale.long.#{locale}"),
+                url_for(locale: locale),
+                class: "#{I18n.locale == locale ? 'active' : nil}" %>
+        </li>
+        <% if ln != locale_i + 1 %>
+          <li class="nav-lang-separator">/</li>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class="nav-lang-toggle">
+      <%= image_tag('language.svg', class: 'language') %>
+      <%= image_tag('close.svg', class: 'close') %>
+    </div>
+  </div>
+  <div class="nav-social">
+    <ul class="nav-social-list"><li class="facebook"><%= link_to image_tag('fb.svg'),
+              "https://facebook.com",
+              target: '_blank',
+              title: t("shared.common.facebook") %></li><li class="twitter"><%= link_to image_tag('twitter.svg'),
+              "https://twitter.com",
+              target: '_blank',
+              title: t('shared.common.twitter') %></li><li class="linkedin"><%= link_to image_tag('linkedin.svg'),
+              "https://linkedin.com",
+              target: '_blank',
+              title: t('shared.common.linkedin') %></li></ul>
+    <div class="nav-social-toggle">
+      <%= image_tag('share.svg', class: 'share') %>
+      <%= image_tag('close.svg', class: 'close') %>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <ul class="nav-menu">
       <li class="dropdown">
         <a href="#" id="user-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
           <%= icon('user')%>
@@ -41,36 +80,6 @@
           </li>
         </ul>
       </li>
-    <% end %>
-
-    <li class="nav-lang">
-      <ul class='language-switcher'>
-        <% ln = I18n.available_locales.length %>
-        <% I18n.available_locales.each_with_index do |locale, locale_i| %>
-          <li class='<%= "active" if I18n.locale == locale %>'>
-            <%= link_to t("shared.locale.long.#{locale}"),
-                  url_for(locale: locale),
-                  class: "#{I18n.locale == locale ? 'active' : nil}" %>
-          </li>
-          <% if ln != locale_i + 1 %>
-            <li class="nag-lang-separator">/</li>
-          <% end %>
-        <% end %>
-      </ul>
-    </li>
-  </ul>
-  <ul class="nav-social">
-    <li class="facebook"><%= link_to image_tag('fb.svg'),
-            "https://facebook.com",
-            target: '_blank',
-            title: t("shared.common.facebook") %></li>
-    <li class="twitter"><%= link_to image_tag('twitter.svg'),
-            "https://twitter.com",
-            target: '_blank',
-            title: t('shared.common.twitter') %></li>
-    <li class="linkedin"><%= link_to image_tag('linkedin.svg'),
-            "https://linkedin.com",
-            target: '_blank',
-            title: t('shared.common.linkedin') %></li>
-  </ul>
+    </ul>
+  <% end %>
 </nav>

@@ -1,0 +1,521 @@
+// ---------------------- common
+  @charset 'UTF-8';
+
+  @import 'reset';
+  @import 'components/fonts';
+
+  body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    // position: relative;
+    margin: 0 0 60px;
+    background-color: #fff3de;
+    background: transparent url("<%= asset_path('bg.jpg') %>") no-repeat;
+    background-size: cover;
+    &.story_show {
+      background-color: #f7f4f2;
+      background: transparent url("<%= asset_path('bg_story.jpg') %>") no-repeat;
+      background-size: cover;
+    }
+  }
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: #f5e7d2;
+  }
+  *::-webkit-scrollbar {
+    height: 8px;
+    width:8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #bfbfbf;
+    border: 2px solid #f5e7d2;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #b1b1b1;
+    border: 2px solid #f5e7d2;
+    cursor: pointer;
+  }
+  a { text-decoration: none; }
+
+nav {
+  position: relative;
+  width: 100%;
+  padding: 16px 0 16px 6px;
+   > div {
+    display: block;
+   }
+  .nav-logo-outer {
+    .nav-logo-inner {
+      display: inline-block;
+      position: relative;
+    }
+    .nav-logo {}
+    .nav-about {
+      position: absolute;
+      top: 0;
+      right: 6px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      a {
+        font: 22px caviar_dreams_b;
+        color: #cc983b;
+        vertical-align: top;
+      }
+      .nav-separator {
+        display: inline-block;
+        height: 30px;
+        width: 1px;
+        background-color: #cd9732;
+        margin-right: 10px;
+        vertical-align: top;
+      }
+    }
+  }
+
+  .nav-logo {
+    .large { display: none; }
+  }
+  .nav-slogan {
+    padding: 15px 0 0;
+    font: 16px caviar_dreams_b;
+    color: #613f20;
+  }
+  .nav-lang {
+    position: absolute;
+    top: 16px;
+    right: 0;
+    padding: 10px 0 8px 20px;
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    .nav-lang-list {
+      display: none;
+      li {
+        display: inline-block;
+        a {
+          font: 16px playfair_display_r;
+          color: #cd9732;
+          &.active {
+            font: 16px playfair_display_b;
+          }
+        }
+        &.nav-lang-separator {
+          font: 16px playfair_display_r;
+          color: #cd9732;
+        }
+      }
+    }
+    .nav-lang-toggle {
+      cursor: pointer;
+      margin:0 7px 0 18px;
+      .close { display: none; }
+    }
+    &.active {
+      background-color: rgba(247, 206, 19, .7);
+      .nav-lang-list {
+        display: initial;
+      }
+      .language {
+        display: none;
+      }
+      .close { display: initial; }
+      li {
+        // display: inline-block;
+        a {
+          // font: 14px playfair_display_r;
+          color: #613f20;
+        }
+      }
+
+    }
+
+
+  }
+  .nav-social {
+    position: absolute;
+    top: 90px;
+    right: 0;
+    padding: 10px 0 8px 20px;
+    display: flex;
+    flex-direction: row;
+    .nav-social-list {
+      display: none;
+      li {
+        display: inline-block;
+        margin-right: 12px;
+        a {
+          border-radius: 8px;
+          // border-top-left-radius: 8px;
+          // border-bottom-left-radius: 8px;
+          // width: 41px;
+          // margin-bottom: 4px;
+          display: inline-block;
+          text-align: center;
+          padding: 8px 16px 6px;
+        }
+        &.facebook a {
+          background-color: #eb4848;
+        }
+        &.twitter a {
+          background-color: #cd9732;
+        }
+        &.linkedin a {
+          background-color: #a0934f;
+        }
+      }
+    }
+    .nav-social-toggle {
+      background-color: #613f20;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      height: 37px;
+      // margin-left: 10px;
+      .close { display: none; }
+    }
+    &.active {
+      .nav-social-list { display: initial; }
+      .share { display: none; }
+      .close { display: initial; }
+    }
+  }
+}
+main {
+  padding: 0 8px;
+  .container {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .grid {
+    // overflow-x: auto;
+    list-style: none;
+    width: 390px;
+    margin: 0 auto;
+    font-size: 0;
+    li {
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 10px;
+      font-size: 18px;
+      &:nth-of-type(1), &:nth-of-type(4), &:nth-of-type(6), &:nth-of-type(8), &:nth-of-type(11) {
+        margin-right: 10px;
+      }
+      .story-container {
+        position: relative;
+        cursor: pointer;
+      }
+      .story-poster {
+        img {
+          min-width: 100%;
+          vertical-align: top;
+        }
+      }
+      .story-info {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .story-notice {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate( -50%, -50%);
+          width: 100px;
+          height: 100px;
+          border-radius: 100%;
+          background-color: #4571b1;
+          border: 8px solid #f5ce20;
+          .story-soon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate( -50%, -50%);
+            font: 14px caviar_dreams_b;
+            color: #f3ede4;
+            text-align: center;
+            opacity: 1;
+
+          }
+          .story-title {
+            opacity: 0;
+
+          }
+        }
+        .story-link {
+          transition: background-color .2s linear;
+          -moz-transition: background-color .2s linear;
+          -webkit-transition: background-color .2s linear;
+        }
+      }
+      .story-link {
+        pointer-events: none;
+      }
+      .story-container.about-eurasianet {
+        .story-info {
+          opacity: 1;
+          .story-link {
+            font: 22px caviar_dreams_b;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            // background-color: rgba(245, 206, 32, 0.6);
+            background-image: linear-gradient(to bottom, transparent 0%, #988c49 100%);
+
+            height: 100%;
+            justify-content: center;
+            img {
+              opacity: 0;
+              margin: 15px auto 20px;
+            }
+          }
+        }
+      }
+      &:not(.cs) .story-container:hover, &:not(.cs) .story-container.hover {
+        .story-info {
+          opacity: 1;
+          .story-link {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background-color: rgba(235, 72, 72, .9);
+            height: 100%;
+          }
+          .story-title {
+            font: 18px caviar_dreams_r;
+            color: #f0e8d8;
+            padding: 30px 15px 0;
+            flex: 1;
+          }
+          .story-author {
+            font: 12px playfair_display_r;
+            color: #f9ce08;
+            padding: 0 30px 15px;
+            span {
+              font: 14px playfair_display_r;
+
+            }
+          }
+          .story-explore {
+            font: 14px caviar_dreams_b;
+            color: #fff;
+            padding: 6px 12px;
+            margin: 23px auto 10px;
+            border: 1px solid #fff;
+            pointer-events: all;
+          }
+        }
+        &.about-eurasianet {
+          .story-link {
+            background-color: transparent;
+            img {
+              opacity: 1;
+            }
+          }
+        }
+      }
+      &.cs {
+        .story-info {
+          opacity: 1;
+          transition: all .15s linear;
+          -moz-transition: all .15s linear;
+          -webkit-transition: all .15s linear;
+        }
+        .story-container:hover, .story-container.hover {
+          .story-info {
+            background-color: rgba(245, 206, 32, 0.6);
+          }
+          .story-notice {
+            width: 154px;
+            height: 154px;
+            border: 0;
+          }
+          .story-soon {
+            opacity: 0;
+          }
+          .story-title {
+            opacity: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate( -50%, -50%);
+            font: 18px caviar_dreams_r;
+            color: #f3ede4;
+            text-align: center;
+            width: 80%;
+            transition: opacity .05s linear;
+            -moz-transition: opacity .05s linear;
+            -webkit-transition: opacity .05s linear;
+          }
+        }
+      }
+    }
+  }
+}
+footer {
+  padding: 10px 0 0;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  a {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: top;
+    padding-top: 10px;
+    margin: 0 20px;
+  }
+  .separator {
+    display: inline-block;
+    height: 40px;
+    width: 1px;
+    background-color: #000;
+    opacity: .2;
+    vertical-align: top;
+  }
+}
+@media only screen and (min-width : 768px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0 20px;
+    .nav-logo-outer {
+      margin-top: 20px;
+      padding-left: 30px;
+      .nav-about {
+        top: 4px;
+        right: 23px;
+        .nav-separator {
+          height: 30px;
+        }
+      }
+    }
+    .nav-logo {
+      .small { display: none; }
+      .large { display: initial; }
+    }
+    .nav-slogan {
+      flex: 1;
+      align-self: flex-end;
+      padding: 0 40px 15px;
+    }
+    .nav-lang {
+      position: static;
+      padding: 6px 30px 0;
+      border-radius: 0;
+      .nav-lang-list {
+        display: initial;
+        li {
+          a {
+            font: 14px playfair_display_r;
+            &.active {
+              font: 14px playfair_display_b;
+            }
+          }
+          &.nav-lang-separator {
+            font: 14px playfair_display_r;
+          }
+        }
+      }
+      .nav-lang-toggle {
+        display: none;
+      }
+       &.active {
+        background-color: transparent;
+      }
+    }
+    .nav-social {
+      position: static;
+      padding: 0;
+      // display: flex;
+      // flex-direction: row;
+      .nav-social-list {
+        display: flex;
+        flex-direction: column;
+        li {
+          display: inline-block;
+          margin-right: 0;
+          a {
+            border-radius: 0;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            // width: 41px;
+            margin-bottom: 4px;
+            padding: 8px 12px 6px 16px;
+          }
+        }
+      }
+      .nav-social-toggle {
+        display: none;
+      }
+      &.active {
+        .nav-social-list { display: flex; }
+      }
+    }
+  }
+
+  main {
+    padding: 0 30px;
+    // .container {
+    //   overflow-x: auto;
+    //   overflow-y: hidden;
+    // }
+    .grid {
+      // overflow-x: auto;
+      // list-style: none;
+      width: 1390px;
+      // margin: 0 auto;
+      // font-size: 0;
+      li {
+        // display: inline-block;
+        vertical-align: bottom;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 10px;
+        // font-size: 18px;
+        &.vt { // vertical align top
+          margin-top: 10px;
+          vertical-align: top;
+        }
+        &.wm { // without margin
+          margin-right: 0;
+        }
+        .story-link {
+          pointer-events: all;
+        }
+        &:not(.cs) .story-container:hover, &:not(.cs) .story-container.hover {
+          .story-info {
+            .story-title {
+              font: 20px caviar_dreams_r;
+            }
+            .story-explore { display: none; }
+          }
+        }
+        &.cs {
+          .story-container:hover, .story-container.hover {
+            .story-title {
+              font: 20px caviar_dreams_r;
+            }
+          }
+        }
+      }
+    }
+  }
+}

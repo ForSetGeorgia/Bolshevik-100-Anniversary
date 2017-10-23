@@ -11,4 +11,4 @@ Rails.application.config.assets.version = '1.0'
 # are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( admin_styles.css admin_scripts.js ckeditor/*)
+Rails.application.config.assets.precompile += %w( admin.css admin_styles.css admin_scripts.js ckeditor/*)
