@@ -28,6 +28,10 @@ en:
       'no': 'No'
       'yes': 'Yes'
       show_title: "%{model}: %{title}"
+      facebook: Share on Facebook
+      twitter: Share on Twitter
+      linkedin: Share on Instagram
+      from: From
     links:
       page_contents: Edit Page Text
       admin: Admin Section
@@ -42,7 +46,7 @@ en:
       long:
         en: English
         ka: "ქართული"
-        ru: "ру́сский"
+        ru: "Русский"
     msgs:
       does_not_exist: You tried to access a page that does not exist.
       not_authorized: You are not authorized to view that page.

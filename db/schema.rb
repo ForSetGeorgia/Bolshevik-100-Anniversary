@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015202330) do
+ActiveRecord::Schema.define(version: 20171022131028) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20171015202330) do
     t.integer  "image_story_file_size",       limit: 4
     t.datetime "image_story_updated_at"
     t.integer  "sort_order",                  limit: 1,   default: 1
+    t.boolean  "is_wide",                                 default: false
   end
 
   add_index "stories", ["is_published", "published_at"], name: "index_stories_on_is_published_and_published_at", using: :btree

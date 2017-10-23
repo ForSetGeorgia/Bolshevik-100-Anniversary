@@ -2,7 +2,9 @@
 en:
   application:
     navbar_header:
-      about: About Project
+      logo: Site Logo
+      about: ABOUT
+      slogan: Evaluating the 100th anniversary of the Bolshevik Revolution
       account:
         edit_profile: Edit Profile
         logout: Logout

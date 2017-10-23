@@ -1,7 +1,11 @@
 <footer class='app-footer'>
-  <p class='app-footer-left'>&copy; <%= Time.now.year %></p>
-  <%= link_to image_tag('forset-logo.png', class: 'app-footer-right'),
+  <%= link_to image_tag('forset.svg'),
               'https://forset.ge',
               target: '_blank',
               title: t('shared.common.forset.slogan') %>
+  <div class="separator"></div>
+  <%= link_to image_tag('eurasianet.svg'),
+              "#{I18n.locale == :en ? 'eurasianet.org' : 'http://russian.eurasianet.org/'}",
+              target: '_blank',
+              title: t('shared.common.eurasianet.slogan') %>
 </footer>
