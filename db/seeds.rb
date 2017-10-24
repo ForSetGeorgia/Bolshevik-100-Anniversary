@@ -44,6 +44,9 @@ PageContent.find_or_create_by(name: 'about_eurasianet') do |pc|
     puts 'creating page content for about eurasianet'
     pc.title = 'About EurasiaNet'
     pc.content = '<p>....</p>'
+    Globalize.with_locale(:ru) do
+      pc.title = 'О сайте EurasiaNet.org'
+    end
 end
 
 

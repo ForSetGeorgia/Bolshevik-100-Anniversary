@@ -1,11 +1,17 @@
 <main>
-  <div class="container">
-    <%= bootstrap_flash %>
-
-    <% if @show_page_title == true && content_for?(:page_title) %>
-      <h1 class='primary-header'><%= yield(:page_title) %></h1>
-    <% end %>
-
+  <% if @is_story_page %>
+    <%= render partial: 'application/navbar_header' %>
     <%= yield %>
-  </div>
+    <%= render partial: 'application/footer' %>
+  <% else %>
+    <div class="container">
+      <%= bootstrap_flash %>
+
+      <% if @show_page_title == true && content_for?(:page_title) %>
+        <h1 class='primary-header'><%= yield(:page_title) %></h1>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  <% end %>
 </main>

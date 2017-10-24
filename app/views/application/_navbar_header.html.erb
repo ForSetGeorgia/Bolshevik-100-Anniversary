@@ -2,53 +2,62 @@
   <div class="nav-logo-outer">
     <div class="nav-logo-inner">
       <%= link_to root_path,
-                  target: '_blank',
                   title: t('.logo'), class: 'nav-logo' do %>
-        <%= image_tag('logo.svg', class: 'large') %>
-        <%= image_tag('logo_small.svg', class: 'small') %>
+        <%= image_tag("logo_#{I18n.locale}.svg", class: 'large') %>
+        <%= image_tag("logo_#{I18n.locale}_small.svg", class: 'small') %>
       <% end %>
-      <div class="nav-about">
+      <div class="nav-about" lang="<%= I18n.locale %>">
         <div class="nav-separator"></div>
         <%= link_to t('.about'), about_path %>
       </div>
     </div>
   </div>
-  <div class="nav-slogan"><%= t('.slogan') %></div>
-  <div class="nav-lang">
-    <ul class='nav-lang-list'>
-      <% ln = I18n.available_locales.length %>
-      <% I18n.available_locales.each_with_index do |locale, locale_i| %>
-        <li class='<%= "active" if I18n.locale == locale %>'>
-          <%= link_to t("shared.locale.long.#{locale}"),
-                url_for(locale: locale),
-                class: "#{I18n.locale == locale ? 'active' : nil}" %>
-        </li>
-        <% if ln != locale_i + 1 %>
-          <li class="nav-lang-separator">/</li>
+  <% if !@is_story_page %>
+    <div class="nav-motto"><%= t('.motto') %></div>
+  <% end %>
+  <div class="nav-menu">
+    <div class="nav-about">
+      <%= link_to t('.about'), about_path %>
+      <div class="nav-separator"></div>
+    </div>
+    <div class="nav-lang">
+      <ul class='nav-lang-list'>
+        <% ln = I18n.available_locales.length %>
+        <% I18n.available_locales.each_with_index do |locale, locale_i| %>
+          <li class='<%= "active" if I18n.locale == locale %>'>
+            <%= link_to t("shared.locale.long.#{locale}"),
+                  url_for(locale: locale),
+                  class: "#{I18n.locale == locale ? 'active' : nil}" %>
+          </li>
+          <% if ln != locale_i + 1 %>
+            <li class="nav-lang-separator">/</li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-    <div class="nav-lang-toggle">
-      <%= image_tag('language.svg', class: 'language') %>
+      </ul>
+    </div>
+    <div class="nav-toggle">
+      <%= image_tag('toggle.svg', class: 'toggle') %>
       <%= image_tag('close.svg', class: 'close') %>
     </div>
   </div>
-  <div class="nav-social">
-    <ul class="nav-social-list"><li class="facebook"><%= link_to image_tag('fb.svg'),
-              "https://facebook.com",
-              target: '_blank',
-              title: t("shared.common.facebook") %></li><li class="twitter"><%= link_to image_tag('twitter.svg'),
-              "https://twitter.com",
-              target: '_blank',
-              title: t('shared.common.twitter') %></li><li class="linkedin"><%= link_to image_tag('linkedin.svg'),
-              "https://linkedin.com",
-              target: '_blank',
-              title: t('shared.common.linkedin') %></li></ul>
-    <div class="nav-social-toggle">
-      <%= image_tag('share.svg', class: 'share') %>
-      <%= image_tag('close.svg', class: 'close') %>
+  <% if !@is_story_page %>
+    <div class="nav-social">
+      <ul class="nav-social-list"><li class="facebook"><%= link_to image_tag('fb.svg'),
+                "https://facebook.com",
+                target: '_blank',
+                title: t("shared.common.facebook") %></li><li class="twitter"><%= link_to image_tag('twitter.svg'),
+                "https://twitter.com",
+                target: '_blank',
+                title: t('shared.common.twitter') %></li><li class="linkedin"><%= link_to image_tag('linkedin.svg'),
+                "https://linkedin.com",
+                target: '_blank',
+                title: t('shared.common.linkedin') %></li></ul>
+      <div class="nav-social-toggle">
+        <%= image_tag('share.svg', class: 'share') %>
+        <%= image_tag('close.svg', class: 'close') %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <% if user_signed_in? %>
     <ul class="nav-menu">
       <li class="dropdown">

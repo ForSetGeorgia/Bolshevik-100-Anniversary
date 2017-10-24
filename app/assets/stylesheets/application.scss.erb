@@ -19,11 +19,7 @@
     background-color: #fff3de;
     background: transparent url("<%= asset_path('bg.jpg') %>") no-repeat;
     background-size: cover;
-    &.story_show {
-      background-color: #f7f4f2;
-      background: transparent url("<%= asset_path('bg_story.jpg') %>") no-repeat;
-      background-size: cover;
-    }
+    background-attachment: fixed;
   }
   * {
     -webkit-box-sizing: border-box;
@@ -31,7 +27,7 @@
     box-sizing: border-box;
   }
   *::-webkit-scrollbar-track {
-    background-color: #f5e7d2;
+    background-color: #fff3de;
   }
   *::-webkit-scrollbar {
     height: 8px;
@@ -39,14 +35,17 @@
   }
   *::-webkit-scrollbar-thumb {
     background-color: #bfbfbf;
-    border: 2px solid #f5e7d2;
+    border: 2px solid #fff3de;
   }
   *::-webkit-scrollbar-thumb:hover {
     background-color: #b1b1b1;
-    border: 2px solid #f5e7d2;
+    border: 2px solid #fff3de;
     cursor: pointer;
   }
-  a { text-decoration: none; }
+  a {
+    display: inline-block;
+    text-decoration: none;
+  }
 
 nav {
   position: relative;
@@ -60,14 +59,11 @@ nav {
       display: inline-block;
       position: relative;
     }
-    .nav-logo {}
+    .nav-logo {
+      .large { display: none; }
+    }
     .nav-about {
-      position: absolute;
-      top: 0;
-      right: 6px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      display: none;
       a {
         font: 22px caviar_dreams_b;
         color: #cc983b;
@@ -83,16 +79,12 @@ nav {
       }
     }
   }
-
-  .nav-logo {
-    .large { display: none; }
-  }
-  .nav-slogan {
+  .nav-motto {
     padding: 15px 0 0;
     font: 16px caviar_dreams_b;
     color: #613f20;
   }
-  .nav-lang {
+  .nav-menu {
     position: absolute;
     top: 16px;
     right: 0;
@@ -101,26 +93,30 @@ nav {
     flex-direction: row;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    .nav-lang-list {
-      display: none;
-      li {
-        display: inline-block;
-        a {
-          font: 16px playfair_display_r;
-          color: #cd9732;
-          &.active {
-            font: 16px playfair_display_b;
+    .nav-about { display: none; }
+    .nav-lang {
+      .nav-lang-list {
+        display: none;
+        li {
+          display: inline-block;
+          margin-top: 2px;
+          a {
+            font: 16px playfair_display_r;
+            color: #cd9732;
+            &.active {
+              font: 16px playfair_display_b;
+            }
           }
-        }
-        &.nav-lang-separator {
-          font: 16px playfair_display_r;
-          color: #cd9732;
+          &.nav-lang-separator {
+            font: 16px playfair_display_r;
+            color: #cd9732;
+          }
         }
       }
     }
-    .nav-lang-toggle {
+    .nav-toggle {
       cursor: pointer;
-      margin:0 7px 0 18px;
+      margin:2px 7px 0 18px;
       .close { display: none; }
     }
     &.active {
@@ -128,7 +124,23 @@ nav {
       .nav-lang-list {
         display: initial;
       }
-      .language {
+      .nav-about {
+        display: initial;
+        a {
+          font: 20px caviar_dreams_b;
+          color: #fff;
+          vertical-align: top;
+        }
+        .nav-separator {
+          display: inline-block;
+          height: 30px;
+          width: 1px;
+          background-color: #fff;
+          margin: 0 10px;
+          vertical-align: top;
+        }
+      }
+      .toggle {
         display: none;
       }
       .close { display: initial; }
@@ -139,10 +151,7 @@ nav {
           color: #613f20;
         }
       }
-
     }
-
-
   }
   .nav-social {
     position: absolute;
@@ -400,10 +409,23 @@ footer {
       margin-top: 20px;
       padding-left: 30px;
       .nav-about {
-        top: 4px;
-        right: 23px;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        white-space: nowrap;
         .nav-separator {
           height: 30px;
+        }
+        &:lang(en) {
+          top: 4px;
+          right: 23px;
+        }
+        &:lang(ru) {
+          top: 4px;
+          right: initial;
+          left: 100%;
+          margin-left: 20px;
         }
       }
     }
@@ -411,35 +433,45 @@ footer {
       .small { display: none; }
       .large { display: initial; }
     }
-    .nav-slogan {
+    .nav-motto {
       flex: 1;
       align-self: flex-end;
       padding: 0 40px 15px;
     }
-    .nav-lang {
+    .nav-menu {
       position: static;
-      padding: 6px 30px 0;
-      border-radius: 0;
-      .nav-lang-list {
-        display: initial;
-        li {
-          a {
-            font: 14px playfair_display_r;
-            &.active {
-              font: 14px playfair_display_b;
+      padding: 0;
+      .nav-about {
+        display: none;
+      }
+      .nav-lang {
+        padding: 6px 30px 0;
+        border-radius: 0;
+        .nav-lang-list {
+          display: initial;
+          li {
+            a {
+              font: 14px playfair_display_r;
+              &.active {
+                font: 14px playfair_display_b;
+              }
             }
-          }
-          &.nav-lang-separator {
-            font: 14px playfair_display_r;
+            &.nav-lang-separator {
+              font: 14px playfair_display_r;
+            }
           }
         }
       }
-      .nav-lang-toggle {
+      .nav-toggle {
         display: none;
       }
-       &.active {
+      &.active {
+        .nav-about {
+          display: none;
+        }
         background-color: transparent;
       }
+
     }
     .nav-social {
       position: static;
@@ -515,6 +547,66 @@ footer {
             }
           }
         }
+      }
+    }
+  }
+}
+
+.about {
+  main {
+    padding: 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    .aside {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      order: 2;
+      .about {
+        font: 22px caviar_dreams_b;
+        color: #fff;
+        width: 100%;
+        background-color: #4571b1;
+
+        padding: 85px 0 85px 30px;
+      }
+      .col {
+        margin-right: 8px;
+        flex: 1;
+        div {
+          margin-bottom: 8px;
+          width: 100%;
+          min-width: 200px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .content {
+      order: 1;
+      padding:0 50px 0 30px;
+      max-width: 992px;
+      p {
+        padding-bottom: 30px;
+      }
+    }
+  }
+}
+@media only screen and (min-width : 992px) {
+  .about {
+    .container {
+      display: flex;
+      flex-direction: row;
+      .aside {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+      }
+      .content {
+        order: 2;
       }
     }
   }

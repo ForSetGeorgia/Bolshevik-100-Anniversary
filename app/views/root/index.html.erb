@@ -18,11 +18,11 @@
               <%= link_to story_show_path(story), class: 'story-link' do %>
                 <div class="story-title"><%= story.title %></div>
                 <div class="story-explore"><%= t('shared.common.explore') %></div>
-                <div class="story-author"><%= t('shared.common.from') %><br /><span><%= story.author  %></div>
+                <div class="story-author"><%= story.author  %></div>
               <% end %>
             <% else %>
               <div class="story-notice">
-                <span class="story-soon">Coming Soon</span>
+                <span class="story-soon"><%= t('.coming_soon') %></span>
                 <span class="story-title"><%= story.title %></span>
               </div>
             <% end %>

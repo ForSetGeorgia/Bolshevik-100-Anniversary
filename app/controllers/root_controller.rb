@@ -8,10 +8,12 @@ class RootController < ApplicationController
   end
 
   def about
+    @show_page_title = false
     @about = PageContent.find_by(name: 'about')
   end
 
   def about_eurasianet
+    @show_page_title = false
     @about = PageContent.find_by(name: 'about_eurasianet')
   end
 
@@ -20,6 +22,7 @@ class RootController < ApplicationController
   end
 
   def story_show
+    @show_page_title = false
     begin
       @story = Story.friendly.published.find(params[:id])
 

@@ -2,7 +2,7 @@
 
   <%-
     title = (content_for?(:page_title) && yield(:page_title) != t('shared.common.name') ? "#{strip_tags_nbsp(yield(:page_title))} | #{t('shared.common.name')}" :
-              "#{t('shared.common.name')} - #{t('shared.common.slogan')}").html_safe
+              "#{t('shared.common.name')} - #{t('shared.common.motto')}").html_safe
 
     share_title = content_for?(:meta_title) ? yield(:meta_title) : title
     desc = content_for?(:meta_description) ? yield(:meta_description) : t("shared.common.description").html_safe
@@ -38,6 +38,9 @@
   <% if content_for?(:meta_image) %>
     <meta property="og:image" content="<%= full_url(yield(:meta_image)) %>" />
     <meta name="twitter:image" content="<%= full_url(yield(:meta_image)) %>" />
+  <% else %>
+    <meta property="og:image" content='<%= full_url(asset_path("share_#{I18n.locale}.jpg")) %>' />
+    <meta name="twitter:image" content='<%= full_url(asset_path("share_#{I18n.locale}.jpg")) %>' />
   <% end %>
   <!--meta property="og:image" content="<%= image_url("shareimage.png") %>" /-->
   <!--meta property="twitter:images0" content="<%= image_url("shareimage.png") %>" /-->
@@ -49,14 +52,14 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
   <![endif]-->
-
+  <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   <%
     # add extra styles if the user is signed in
     css = []
     css << 'admin_styles' if user_signed_in?
 
     css << 'admin' if params[:controller] != 'root'
-    css << 'application'
+    css << (@is_story_page ? 'story' : 'application')
   %>
   <%= stylesheet_link_tag  *(css), :media => "all" %>
 

@@ -1,3 +1,70 @@
 <% page_title @about.title %>
 
 <%= simple_format_no_tags @about.content, {}, sanitize: false %>
+
+
+<div class="container">
+  <div class="motto"><%= t('shared.common.motto') %></div>
+  <div class="aside">
+    <div class="poster-container">
+      <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;"></div>
+      <div class="bg"></div>
+    </div>
+    <div class="lane">
+      <div class="card">
+        <div class="title"><%= @story.title %></div>
+        <div class="author"><%= @story.author %></div>
+      </div>
+      <div class="tools">
+        <div class="tools-container">
+          <div class="col">
+            <a href="javascript:window.print()" class="print"><%= image_tag('print.svg') %></a>
+          </div>
+
+          <div class="col col-fill">
+            <%
+              img_cap = []
+              img_cap << t('.image_caption', cap: @story.image_caption) if @story.image_caption.present?
+              img_cap << t('.image_credit', credit: @story.image_credit) if @story.image_credit.present?
+            %>
+            <div class="image-caption"><%= img_cap.join(' ') %></div>
+          </div>
+          <div class="col">
+            <div class="social">
+              <ul class="social-list"><li class="facebook"><%= link_to image_tag('fb_story.svg'),
+                        "https://facebook.com",
+                        target: '_blank',
+                        title: t("shared.common.facebook") %></li><li class="twitter"><%= link_to image_tag('twitter_story.svg'),
+                        "https://twitter.com",
+                        target: '_blank',
+                        title: t('shared.common.twitter') %></li><li class="linkedin"><%= link_to image_tag('linkedin_story.svg'),
+                        "https://linkedin.com",
+                        target: '_blank',
+                        title: t('shared.common.linkedin') %></li></ul>
+              <div class="social-toggle">
+                <%= image_tag('share_story.svg', class: 'share') %>
+                <%= image_tag('close.svg', class: 'close') %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slideshow">
+        <%= link_to t('.previous'), story_show_path(@previous), title: @previous.title if @previous.present? %>
+        <%= link_to t('.next'), story_show_path(@next), title: @next.title if @next.present? %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="content-inner">
+    <%= simple_format_no_tags(@story.content, {}, sanitize: false) %>
+    <% if @story.footnotes.present? %>
+      <h2><%= t('.footnotes') %></h2>
+      <div class="footnotes">
+        <%= simple_format_no_tags(@story.footnotes, {}, sanitize: false) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

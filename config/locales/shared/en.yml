@@ -21,11 +21,11 @@ en:
       account: Account
       actions: Actions
       forset:
-        slogan: ForSet - Communicating with Data
+        motto: ForSet - Communicating with Data
       eurasianet:
-        slogan: Eurasianet
+        motto: Eurasianet
       name: The Red Legacy
-      slogan: Evaluating the 100th anniversary of the Bolshevik Revolution.
+      motto: Evaluating the 100th anniversary of the Bolshevik Revolution.
       description: This is a description of the project that will appear in the meta tags.
       'no': 'No'
       'yes': 'Yes'
@@ -60,6 +60,8 @@ en:
       confirm: Are you sure?
       forgot_password: Forgot your password?
     story_show:
+      image_caption: "%{cap}"
+      image_credit: "( Photo: %{credit} )"
       by: By
       credit: Credit
       next: Next Story

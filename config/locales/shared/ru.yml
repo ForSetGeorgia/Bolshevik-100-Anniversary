@@ -1,0 +1,70 @@
+---
+ru:
+  shared:
+    actions:
+      change_my_password: Change my password
+      destroy: Delete
+      edit: Edit
+      log_in: Log in
+      view: View
+      add: Add
+      with_obj:
+        cancel: Cancel %{obj}
+        create: Create %{obj}
+        destroy: Delete %{obj}
+        edit: Edit %{obj}
+        new: New %{obj}
+        update: Update %{obj}
+        view: View %{obj}
+        view_all: View All %{obj}
+    common:
+      account: Account
+      actions: Actions
+      forset:
+        motto: ForSet - Communicating with Data
+      eurasianet:
+        motto: Eurasianet
+      name: Наследие Октября
+      motto: Оценивая столетний юбилей Октябрьской революции
+      description: This is a description of the project that will appear in the meta tags.
+      'no': 'No'
+      'yes': 'Yes'
+      show_title: "%{model}: %{title}"
+      facebook: Share on Facebook
+      twitter: Share on Twitter
+      linkedin: Share on Instagram
+      from: From
+      explore: EXPLORE
+    links:
+      page_contents: Edit Page Text
+      admin: Admin Section
+      stories: Stories
+    labels:
+      translated_field: "%{field} (%{language})"
+    locale:
+      short:
+        en: En
+        ru: Ru
+        ka: "ქა"
+      long:
+        en: English
+        ka: "ქართული"
+        ru: "Русский"
+    msgs:
+      does_not_exist: You tried to access a page that does not exist.
+      not_authorized: You are not authorized to view that page.
+      success_created: "%{obj} was successfully created."
+      success_destroyed: "%{obj} was successfully destroyed."
+      success_updated: "%{obj} was successfully updated."
+    prompts:
+      confirm: Are you sure?
+      forgot_password: Forgot your password?
+    story_show:
+      image_caption: "%cap"
+      image_credit: "( Фото: %credit )"
+      by: By
+      credit: Credit
+      next: Next Story
+      previous: Previous Story
+      print: Версия для печати
+      footnotes: Примечания

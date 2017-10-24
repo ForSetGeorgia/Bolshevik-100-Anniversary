@@ -1,12 +1,17 @@
+<% @is_story_page = controller_name == 'root' && action_name == 'story_show' %>
 <!DOCTYPE html>
 <html html="<%= I18n.locale %>">
   <%= render partial: 'application/head' %>
   <body class="<%= controller_name %> <%= action_name %>">
     <%= Gon::Base.render_data %>
     <%#= render partial: 'application/loading_indicator' %>
-    <%= render partial: 'application/navbar_header' %>
-    <%= render partial: 'application/main' %>
-    <%= render partial: 'application/footer' %>
+    <% if @is_story_page %>
+      <%= render partial: 'application/main' %>
+    <% else %>
+      <%= render partial: 'application/navbar_header' %>
+      <%= render partial: 'application/main' %>
+      <%= render partial: 'application/footer' %>
+    <% end %>
 
     <% if Rails.env.production? %>
       <%= render partial: 'application/google_analytics' %>
