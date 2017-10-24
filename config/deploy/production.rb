@@ -6,3 +6,7 @@ set :repository, 'https://github.com/ForSetGeorgia/Bolshevik-100-Anniversary.git
 set :branch, 'master'
 set :web_url, ENV['PRODUCTION_WEB_URL']
 set :use_ssl, false
+set :identity_file, 'redlegacy.pem'
+set :puma_worker_count, '1'
+set :puma_thread_count_min, '1'
+set :puma_thread_count_max, '16'
