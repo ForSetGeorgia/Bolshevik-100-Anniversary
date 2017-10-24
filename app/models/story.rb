@@ -63,8 +63,17 @@ class Story < AddMissingTranslation
                       :'thumb' => '-quality 85'
                     }
 
-  has_attached_file :image_share,
-                    :url => "/system/story/:id/share/:style/:basename.:extension",
+  has_attached_file :image_share_en,
+                    :url => "/system/story/:id/share/en/:style/:basename.:extension",
+                    :styles => {
+                        :'thumb' => {:geometry => "200>"}
+                    },
+                    :convert_options => {
+                      :'thumb' => '-quality 85'
+                    }
+
+  has_attached_file :image_share_ka,
+                    :url => "/system/story/:id/share/ka/:style/:basename.:extension",
                     :styles => {
                         :'thumb' => {:geometry => "200>"}
                     },
@@ -88,7 +97,10 @@ class Story < AddMissingTranslation
   validates_attachment :image_homepage,
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..4.megabytes }
-  validates_attachment :image_share,
+  validates_attachment :image_share_en,
+    content_type: { content_type: ["image/jpeg", "image/png"] },
+    size: { in: 0..4.megabytes }
+  validates_attachment :image_share_ka,
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..4.megabytes }
   validates_attachment :image_story,
@@ -111,6 +123,14 @@ class Story < AddMissingTranslation
     end
     return x
   end
+
+  def image_share(locale=I18n.locale)
+    locale = locale.to_sym
+    locale = I18n.locale if !I18n.available_locales.include?(locale)
+
+    return locale == :en ? image_share_en : image_share_ka
+  end
+
 
   #######################
   #######################

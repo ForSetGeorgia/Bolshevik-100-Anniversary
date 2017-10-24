@@ -52,6 +52,21 @@
                          field: t('activerecord.attributes.story.description_share'),
                          language: enabled_locale_name) %>
 
+      <div class="file input optional form-group" id="story_image_share_<%= enabled_locale %>_input">
+        <span class="form-label">
+          <label for="story_image_share_<%= enabled_locale %>" class=" control-label"><%= t('shared.labels.translated_field',
+                               field: t('activerecord.attributes.story.image_share'),
+                               language: enabled_locale_name) %></label>
+        </span>
+        <% if @story.image_share(enabled_locale).exists? %>
+          <%= image_tag(@story.image_share(enabled_locale).url('thumb')) %>
+        <% end %>
+        <span class="form-wrapper">
+          <input id="story_image_share_<%= enabled_locale %>" accept="image/*" type="file" name="story[image_share_<%= enabled_locale %>]" />
+        </span>
+      </div>
+
+
       <hr />
       <h2><%= t('.image') %></h2>
 
@@ -94,18 +109,6 @@
       <% end %>
       <span class="form-wrapper">
         <input accept=".jpg,.jpeg,.png,.gif" id="story_image_story" name="story[image_story]" type="file">
-      </span>
-    </div>
-
-    <div class="file input optional form-group" id="story_image_share_input">
-      <span class="form-label">
-        <label for="story_image_share" class=" control-label"><%= t('activerecord.attributes.story.image_share') %></label>
-      </span>
-      <% if object.image_share.exists? %>
-        <%= image_tag(object.image_share.url('thumb')) %>
-      <% end %>
-      <span class="form-wrapper">
-        <input accept=".jpg,.jpeg,.png,.gif" id="story_image_share" name="story[image_share]" type="file">
       </span>
     </div>
 
