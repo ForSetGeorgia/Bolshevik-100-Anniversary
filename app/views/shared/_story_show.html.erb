@@ -8,17 +8,21 @@
       <div class="bg"></div>
       <div class="pagination">
         <div class="pagination-container">
-          <% @prev.each {|st| %>
-            <%= link_to story_show_path(st), class: 'prev', title: st.title do %>
-              <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
-            <% end %>
-          <% } %>
-          <div class="current"></div>
-          <% @next.each {|st| %>
-            <%= link_to story_show_path(st), class: 'next', title: st.title do %>
-              <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
-            <% end %>
-          <% } %>
+          <% if @prev.present? %>
+            <% @prev.each {|st| %>
+              <%= link_to story_show_path(st), class: 'prev', title: st.title do %>
+                <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
+              <% end %>
+            <% } %>
+          <% end %>
+          <div class="current">Current</div>
+          <% if @next.present? %>
+            <% @next.each {|st| %>
+              <%= link_to story_show_path(st), class: 'next', title: st.title do %>
+                <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
+              <% end %>
+            <% } %>
+          <% end %>
         </div>
       </div>
     </div>
