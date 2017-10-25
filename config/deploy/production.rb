@@ -1,5 +1,5 @@
 set :domain, 'theredlegacy.org'
-set :user, 'deploy'
+set :user, 'ubuntu'
 set :application, 'Bolshevik'
 # easier to use https; if you use ssh then you have to create key on server
 set :repository, 'https://github.com/ForSetGeorgia/Bolshevik-100-Anniversary.git'
