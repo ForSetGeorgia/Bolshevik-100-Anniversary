@@ -8,7 +8,7 @@
   <div class="aside">
     <div class="poster-container">
       <%= link_to @story.image_story.url, class: 'swipebox', title: img_cap.join(' ') do %>
-        <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;" title="<%= t('.poster_title')%>"></div>
+        <div class="poster" style="background-image: url(<%= @story.image_story.url %>); background-position: top;   background-size: cover; -ms-background-size: cover; -o-background-size: cover; -moz-background-size: cover; -webkit-background-size: cover; background-repeat: no-repeat;" title="<%= t('.poster_title')%>"></div>
       <% end %>
       <div class="bg"></div>
       <% if @story.slug != 'about-eurasianetorg' %>
