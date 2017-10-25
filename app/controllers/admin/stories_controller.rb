@@ -70,7 +70,7 @@ class Admin::StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      permitted = Story.globalize_attribute_names + [:is_published, :published_at, :sort_order, :image_homepage, :image_share_en, :image_share_ka, :image_story]
+      permitted = Story.globalize_attribute_names + [:is_published, :published_at, :sort_order, :image_homepage, :image_share_en, :image_share_ru, :image_story]
       params.require(:story).permit(*permitted)
     end
 

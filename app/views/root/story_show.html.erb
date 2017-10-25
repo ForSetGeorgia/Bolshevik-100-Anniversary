@@ -1,8 +1,8 @@
 <%
   page_title @story.title
-  meta_title strip_tags(@story.title_share)
-  meta_description strip_tags(@story.description_share)
-  meta_image @story.image_share.url
+  meta_title strip_tags(@story.title_share) if @story.title_share.present?
+  meta_description strip_tags(@story.description_share) if @story.description_share
+  meta_image @story.image_share.url if @story.image_share.exists?
 %>
 
 <%= render partial: 'shared/story_show', locals: {show_pubic_links: true} %>

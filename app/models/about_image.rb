@@ -19,7 +19,7 @@ class AboutImage < ActiveRecord::Base
                     }
 
   has_attached_file :image_ru,
-                    :url => "/system/about/:id/share/ka/:style/:basename.:extension",
+                    :url => "/system/about/:id/share/ru/:style/:basename.:extension",
                     :styles => {
                         :'thumb' => {:geometry => "200>"}
                     },
