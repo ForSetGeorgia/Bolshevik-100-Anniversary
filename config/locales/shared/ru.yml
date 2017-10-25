@@ -63,8 +63,8 @@ ru:
       confirm: Are you sure?
       forgot_password: Forgot your password?
     story_show:
-      image_caption: "%cap"
-      image_credit: "( Фото: %credit )"
+      image_caption: "%{cap}"
+      image_credit: "( Фото: %{credit} )"
       poster_title: Click to view full image
       by: By
       credit: Credit

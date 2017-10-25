@@ -45,6 +45,10 @@
   a {
     display: inline-block;
     text-decoration: none;
+    &, &:hover, &:focus, &:active, &:visited, &:link {
+      font-family: playfair_display_r;
+      color: #4571b1;
+    }
   }
 
 nav {
@@ -244,8 +248,8 @@ main {
           top: 50%;
           left: 50%;
           transform: translate( -50%, -50%);
-          width: 100px;
-          height: 100px;
+          width: 116px;
+          height: 116px;
           border-radius: 100%;
           background-color: #4571b1;
           border: 8px solid #f5ce20;
@@ -599,6 +603,9 @@ footer {
 }
 @media only screen and (min-width : 992px) {
   .about {
+    background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%), url("<%= asset_path('bg.jpg') %>") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     .container {
       display: flex;
       flex-direction: row;

@@ -41,7 +41,14 @@
     border: 2px solid #f7f4f2;
     cursor: pointer;
   }
-  a { text-decoration: none; }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    &, &:hover, &:focus, &:active, &:visited, &:link {
+      font-family: playfair_display_r;
+      color: #4571b1;
+    }
+  }
 
 
 nav {
@@ -179,6 +186,9 @@ main {
         z-index: 1;
         width: 100%;
         flex: 1;
+        a {
+          display: initial;
+        }
         .poster {
           position: relative;
           width: 100%;

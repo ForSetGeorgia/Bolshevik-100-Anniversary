@@ -29,6 +29,8 @@
   }
   .dropdown-menu {
     display: none;
+    left: initial;
+    right: 0;
     li {
       a {
         display: inline-block;
