@@ -5,6 +5,7 @@ en:
       logo: Site Logo
       about: ABOUT
       motto: Evaluating the 100th anniversary of the Bolshevik Revolution
+      menu_toggle: Menu Toggle
       account:
         edit_profile: Edit Profile
         logout: Logout

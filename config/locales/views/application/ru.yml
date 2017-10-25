@@ -2,9 +2,10 @@
 ru:
   application:
     navbar_header:
-      logo: Site Logo
+      logo: Логотип сайта
       about: О Проекте
       motto: Оценивая столетний юбилей Октябрьской революции
+      menu_toggle: Меню
       account:
         edit_profile: Edit Profile
         logout: Logout

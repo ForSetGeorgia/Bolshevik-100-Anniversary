@@ -32,7 +32,7 @@ en:
       show_title: "%{model}: %{title}"
       facebook: Share on Facebook
       twitter: Share on Twitter
-      linkedin: Share on Instagram
+      linkedin: Share on Linkedin
       from: From
       explore: EXPLORE
     links:
