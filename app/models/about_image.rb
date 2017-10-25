@@ -12,7 +12,7 @@ class AboutImage < ActiveRecord::Base
   has_attached_file :image_en,
                     :url => "/system/about/:id/share/en/:style/:basename.:extension",
                     :styles => {
-                        :'thumb' => {:geometry => "200>"}
+                        :'thumb' => {:geometry => "260>"}
                     },
                     :convert_options => {
                       :'thumb' => '-quality 85'
@@ -21,7 +21,7 @@ class AboutImage < ActiveRecord::Base
   has_attached_file :image_ru,
                     :url => "/system/about/:id/share/ru/:style/:basename.:extension",
                     :styles => {
-                        :'thumb' => {:geometry => "200>"}
+                        :'thumb' => {:geometry => "260>"}
                     },
                     :convert_options => {
                       :'thumb' => '-quality 85'
@@ -41,6 +41,8 @@ class AboutImage < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :sorted, -> { order('position asc, sort_order asc') }
+  scope :only_left, -> { with_translations(I18n.locale).where(position: 0) }
+  scope :only_right, -> { with_translations(I18n.locale).where(position: 1) }
 
   #######################
   ## METHODS

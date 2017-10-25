@@ -25,8 +25,13 @@ class RootController < ApplicationController
   def story_show
     @show_page_title = false
     begin
-      @story = Story.friendly.published.find(params[:id])
 
+
+      if user_signed_in? && current_user.is?(['super_admin', 'site_admin'])
+        @story = Story.friendly.find(params[:id])
+      else
+        @story = Story.friendly.published.find(params[:id])
+      end
       if @story.nil?
         redirect_to root_path,
               alert: t('shared.msgs.does_not_exist')
@@ -38,19 +43,21 @@ class RootController < ApplicationController
 
       story_index = stories.index{|x| x.id == @story.id}
 
-      prev_n = 0
-      next_n = 0
+      if story_index.present?
+        prev_n = 0
+        next_n = 0
 
-      ln = stories.length
-      [1,2].each {|e|
-        prev_n = e if story_index-e >= 0
-        next_n = e if story_index+e <= ln
-      }
-      @prev = stories.slice(story_index-prev_n, prev_n)#..story_index-1
+        ln = stories.length
+        [1,2].each {|e|
+          prev_n = e if story_index-e >= 0
+          next_n = e if story_index+e <= ln
+        }
+        @prev = stories.slice(story_index-prev_n, prev_n)#..story_index-1
+        @next = stories.slice(story_index+1, next_n)
+      end
+
       @prev = [] if @prev.nil?
-      @next = stories.slice(story_index+1, next_n)
       @next = [] if @next.nil?
-
       # if there are more stories than this one, get the ids for the next/prev pages
       # if stories.length > 1
       #   # find this story

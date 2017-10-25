@@ -1,8 +1,13 @@
+<%
+  img_cap = []
+  img_cap << t('.image_caption', cap: @story.image_caption) if @story.image_caption.present?
+  img_cap << t('.image_credit', credit: @story.image_credit) if @story.image_credit.present?
+%>
 <div class="container">
   <div class="motto"><%= t('shared.common.motto') %></div>
   <div class="aside">
     <div class="poster-container">
-      <%= link_to @story.image_story.url, class: 'swipebox' do %>
+      <%= link_to @story.image_story.url, class: 'swipebox', title: img_cap.join(' ') do %>
         <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;" title="<%= t('.poster_title')%>"></div>
       <% end %>
       <div class="bg"></div>
@@ -15,7 +20,9 @@
               <% end %>
             <% } %>
           <% end %>
-          <div class="current">Current</div>
+          <% if @prev.present? || @next.present? %>
+            <div class="current"></div>
+          <% end %>
           <% if @next.present? %>
             <% @next.each {|st| %>
               <%= link_to story_show_path(st), class: 'next', title: st.title do %>
@@ -38,11 +45,7 @@
           </div>
 
           <div class="col col-fill">
-            <%
-              img_cap = []
-              img_cap << t('.image_caption', cap: @story.image_caption) if @story.image_caption.present?
-              img_cap << t('.image_credit', credit: @story.image_credit) if @story.image_credit.present?
-            %>
+
             <div class="image-caption"><%= img_cap.join(' ') %></div>
           </div>
           <% title = URI::encode(content_for?(:page_title) ? "#{yield(:page_title)} | #{t("shared.common.name")}" : "#{t("shared.common.name")}".html_safe) %>

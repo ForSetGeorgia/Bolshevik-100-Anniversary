@@ -1,6 +1,6 @@
 @import 'jquery-ui/theme';
 @import 'jquery-ui/datepicker';
-@import 'application';
+// @import 'application';
 
 .boolean-flag{
   display: inline-block;
@@ -15,5 +15,49 @@
   &.boolean-flag-xs{
     font-size: 12px;
     padding: 2px 4px;
+  }
+}
+
+
+
+.nav-dropdown {
+  position: relative;
+  padding: 6px 30px;
+  .dropdown-toggle {
+    font: 16px caviar_dreams_b;
+    color: #cd9732;
+  }
+  .dropdown-menu {
+    display: none;
+    li {
+      a {
+        display: inline-block;
+        font: 16px playfair_display_r;
+        color: #fff;
+        padding: 10px 12px;
+        white-space: nowrap;
+        width: 100%;
+        &:hover {
+          background-color: #cd9732;
+        }
+      }
+      &.divider {
+        width: 100%;
+        height: 1px;
+        background-color: #cd9732;
+        // padding: 10px 12px;
+      }
+    }
+  }
+  &:hover {
+    .dropdown-menu {
+      display: initial;
+      position: absolute;
+      // top: 0;
+      // left: 0;
+      background-color: #4571b1;
+      padding: 10px 0;
+      z-index: 999;
+    }
   }
 }

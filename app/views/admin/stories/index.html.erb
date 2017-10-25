@@ -31,7 +31,7 @@
       <tr>
         <td>
           <%= link_to t('shared.actions.view'),
-                      admin_story_path(story),
+                      story_show_path(story),
                       class: 'btn btn-default' %>
         </td>
 
@@ -49,7 +49,7 @@
 
           <%= if can? :destroy, story
                 link_to t('shared.actions.destroy'),
-                        admin_story_path(story),
+                        story_show_path(story),
                         method: :delete,
                         data: { confirm: t('shared.prompts.confirm') },
                         class: 'btn btn-danger'

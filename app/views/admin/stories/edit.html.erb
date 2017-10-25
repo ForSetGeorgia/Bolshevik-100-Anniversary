@@ -6,7 +6,7 @@
   <%= render partial: 'shared/edit_actions',
         locals: {
           object: @story,
-          show_path: admin_story_path(@story),
+          show_path: story_show_path(@story),
           index_path: admin_stories_path
                 }
   %>
