@@ -33,20 +33,65 @@ end
 # load page content records with placeholder text
 # project about
 PageContent.find_or_create_by(name: 'about') do |pc|
-    puts 'creating page content for about'
-    pc.title = 'About Red Legacy'
-    pc.content = '<p>...</p>'
-end
-
-# load page content records with placeholder text
-# eurasianet about
-PageContent.find_or_create_by(name: 'about_eurasianet') do |pc|
-    puts 'creating page content for about eurasianet'
-    pc.title = 'About EurasiaNet'
-    pc.content = '<p>....</p>'
-    Globalize.with_locale(:ru) do
-      pc.title = 'О сайте EurasiaNet.org'
-    end
+  puts 'creating page content for about'
+  pc.title = 'About Red Legacy'
+  pc.content = "<p>The Bolshevik coup occurred on October 25 or November 7, 1917, depending on what calendar you go by. It was a revolution by no means accomplished in a day - some argue it took over a decade to play out. It ended up bequeathing to the world Soviet-style communism.</p><p>The centennial of what Soviet historians portrayed as the Great October Socialist Revolution is not receiving much attention in Russia today. But regardless of how it is being publicly commemorated there, it remains one of the key pivot points of the 20th century --an event that shaped international relations for subsequent decades, and which continues to exert tremendous social, economic and political influence over Eurasia.</p><p>A more thorough understanding of the October Revolution's impact can be helpful in making sense of current affairs. Thus, Eurasianet is presenting The Red Legacy, a special project in which leading scholars and experts from the United States, Europe and Russia examine various aspects of the October Revolution and highlight trends and issues that connect the past to the present.</p><p>The Red Legacy gets its name from the red banner of communism under which Vladimir Lenin and his cohorts acted in 1917, and from the Red Army, which kept the Bolsheviks in power during the tumultuous years that followed their seizure of power.</p><p>Starting on October 25, Eurasianet will add an analysis article every day to The Red Legacy until November 7. We hope you enjoy it.</p>"
 end
 
 
+require 'fileutils'
+I18n.locale = :en
+Story.destroy_all
+
+stories = [
+  { title: { en: "Bolshevism's Impact on the Russian Orthodox Church", ru: "" }, author: { en: "Christopher Stroop", ru: "" } },
+  { title: { en: "The Revolution and Islam", ru: "" }, author: { en: "Edward Lemmon", ru: "" } },
+  { title: { en: "The Bolshevik Revolution and the Politics of Memory", ru: "" }, is_wide: true, author: { en: "Chris Miller", ru: "" } },
+  { title: { en: "The Revolution in Central Asia", ru: "" }, author: { en: "Alexander Morrison", ru: "" } },
+  { title: { en: "The impact of 1917 on the Baltics", ru: "" }, author: { en: "Lauri Mälksoo", ru: "" } },
+  { title: { en: "Bolshevism and the Caucasus", ru: "" }, author: { en: "Thomas de Waal", ru: "" } },
+  { title: { en: "Bolshevism: What Might Have Been", ru: "" }, author: { en: "Tarik Cyril Amar", ru: "" } },
+  { title: { en: "Bolshevism and Gender: A Contested Legacy", ru: "" }, author: { en: "Philippa Heatherington", ru: "" } },
+  { title: { en: "The Legacy of 1917 for the Rule of Law", ru: "" }, author: { en: "Dmitry Dubrovsky", ru: "" } },
+  { title: { en: "Bolshevism's Legacy for the Oil Industry", ru: "" }, is_wide: true, author: { en: "Doug Rogers", ru: "" } },
+  { title: { en: "A Legacy of 1917: A Lingering Imperial Situation", ru: "" }, author: { en: "Unknown", ru: "" } },
+  # eurasianet about
+  { title: { en: "About EurasiaNet.org", ru: "О сайте EurasiaNet.org" }, author: { en: nil, ru: nil }, image_id: 99, content: { en: '<p>Eurasianet is a non-profit, independent news organization that produces features and analysis about contemporary developments in Eurasia.</p><p>We present a variety of perspectives about these developments, utilizing a network of correspondents based both in the West and in the region. We strive to fulfill a traditional watchdog function, publishing stories that provide useful context for ongoing policy debates, while seeking to hold authorities accountable for their actions.</p><p>Based in New York, Eurasianet is hosted by Columbia University’s Harriman Institute, one of the leading centers in North America of scholarship concerning Eurasia.</p>', ru: "" } }
+]
+
+stories.each_with_index {|story, story_i|
+  image_id = story[:image_id].present? ? story[:image_id] : story_i+1
+  image = File.new("#{Rails.root}/public/_stories/home/#{image_id}.jpg", "r")
+  image_share = File.new("#{Rails.root}/public/_stories/share/#{I18n.locale}/#{image_id}.jpg", "r")
+  image_story = File.new("#{Rails.root}/public/_stories/story/#{image_id}.jpg", "r")
+  puts image.inspect
+  puts story[:title][:en]
+  I18n.locale = :en
+  s = Story.create(
+    title: story[:title][:en],
+    title_home: story[:title][:en],
+    title_share: story[:title][:en],
+    description_share: story[:title][:en],
+    content: dummy_text,
+    author: story[:author][:en],
+    sort_order: story_i + 1,
+    image_caption: story[:title][:en],
+    image_credit: "Image Credit",
+    author_organization: "Eurasianet",
+    subheader: "Subheader",
+    footnotes: "Footnotes",
+    image_homepage: image,
+    image_share: image_share,
+    image_story:image_story,
+    is_wide: story[:is_wide].present?,
+    is_published: [0, 1].sample
+  )
+  I18n.locale = :ru
+  image_share = File.new("#{Rails.root}/public/_stories/share/#{I18n.locale}/#{image_id}.jpg", "r")
+  s.image_share = image_share
+  s.save
+  if !s.valid?
+    puts s.errors.inspect
+  end
+
+}

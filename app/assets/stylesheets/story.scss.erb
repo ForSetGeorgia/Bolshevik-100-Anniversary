@@ -224,13 +224,10 @@ main {
             flex: 1;
           }
           .author {
-            font: 12px playfair_display_r;
+            font: 16px playfair_display_r;
             color: #eb4848;
             text-align: center;
             padding: 22px 0;
-            span {
-              font: 14px playfair_display_r;
-            }
           }
         }
         .tools {
@@ -512,21 +509,15 @@ footer {
           .pagination {
             display: flex;
             flex-direction: column;
-            // margin: 115px 20px 0 0;
-            overflow: hidden;
+            justify-content: center;
             padding: 75px 20px 0 0;
             height: 100%;
             position: absolute;
             top: 0;
             right: 0;
             .pagination-container {
-              // position: absolute;
-              // top: 50%;
-              // left: 0;
-              // transform: translateY(-50%);
               overflow-y: auto;
               padding-top: 40px;
-              // height: 100%;
             }
             a {
               display: block;
@@ -538,11 +529,19 @@ footer {
               opacity: .6;
               height: 36px;
               margin-bottom: 15px;
+              overflow: visible;
+              &:before {
+                content: "";
+                width: 23px;
+                height: 36px;
+                background: url("<%= asset_path('white_arrow.png') %>") no-repeat;
+                position: absolute;
+                left: -23px;
+              }
             }
           }
         }
       }
-
     }
   }
 }

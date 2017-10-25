@@ -3,7 +3,7 @@
   <div class="aside">
     <div class="poster-container">
       <%= link_to @story.image_story.url, class: 'swipebox' do %>
-        <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;"></div>
+        <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;" title="<%= t('.poster_title')%>"></div>
       <% end %>
       <div class="bg"></div>
       <div class="pagination">
@@ -13,7 +13,7 @@
               <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
             <% end %>
           <% } %>
-          <div class="current">Current</div>
+          <div class="current"></div>
           <% @next.each {|st| %>
             <%= link_to story_show_path(st), class: 'next', title: st.title do %>
               <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
@@ -41,18 +41,16 @@
             %>
             <div class="image-caption"><%= img_cap.join(' ') %></div>
           </div>
+          <% title = URI::encode(content_for?(:page_title) ? "#{yield(:page_title)} | #{t("shared.common.name")}" : "#{t("shared.common.name")}".html_safe) %>
           <div class="col">
             <div class="social">
-              <ul class="social-list"><li class="facebook"><%= link_to image_tag('fb_story.svg'),
-                        "https://facebook.com",
-                        target: '_blank',
-                        title: t("shared.common.facebook") %></li><li class="twitter"><%= link_to image_tag('twitter_story.svg'),
-                        "https://twitter.com",
-                        target: '_blank',
-                        title: t('shared.common.twitter') %></li><li class="linkedin"><%= link_to image_tag('linkedin_story.svg'),
-                        "https://linkedin.com",
-                        target: '_blank',
-                        title: t('shared.common.linkedin') %></li></ul>
+              <ul class="social-list">
+                <li class="facebook"><%= link_to image_tag('fb.svg', alt: t("shared.common.facebook"), title: t("shared.common.facebook")),
+                  "https://www.facebook.com/sharer/sharer.php?u=#{story_show_url(@story)}",
+                  onclick:"javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                   %></li><li class="twitter"><%= link_to image_tag('twitter.svg', alt: t("shared.common.twitter"), title: t("shared.common.twitter")), "https://twitter.com/share?text=#{title}", onclick:"javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" %>
+                  </li><li class="linkedin"><%= link_to image_tag('linkedin.svg', alt: t("shared.common.linkedin"), title: t("shared.common.linkedin")), "https://www.linkedin.com/shareArticle?mini=true&url=#{story_show_url(@story)}&title=#{title}", onclick:"javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" %></li>
+              </ul>
               <div class="social-toggle">
                 <%= image_tag('share_story.svg', class: 'share') %>
                 <%= image_tag('close.svg', class: 'close') %>

@@ -21,7 +21,7 @@
 
 <div class="aside">
   <div class="col">
-    <div class="about">ABOUT <br />THE PROJECT</div>
+    <div class="about"><span>ABOUT <br />THE PROJECT</span><%= image_tag("blue_arrow.png") %></div>
     <% [1,2].each{|e| %>
         <%= link_to asset_path("about/#{e}.jpg"), class: 'swipebox slide next', title: "#{e}" do %>
           <%= image_tag("about/#{e}.jpg", alt: "#{e}") %>

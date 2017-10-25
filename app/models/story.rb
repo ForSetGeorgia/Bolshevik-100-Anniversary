@@ -76,16 +76,17 @@ class Story < AddMissingTranslation
                     :url => "/system/story/:id/story/:style/:basename.:extension",
                     :styles => {
                         :'thumb' => {:geometry => "200>"},
-                        :'pagination' => {:geometry => "130x130#"}
+                        :'pagination' => ""
                     },
                     :convert_options => {
-                      :'thumb' => '-quality 85'
+                      :'thumb' => '-quality 85',
+                      :'pagination' => '-gravity north -thumbnail 130x130^ -extent 130x130'
                     }
 
   #######################
   ## VALIDATIONS
 
-  validates :title, :author, presence: :true
+  validates :title, presence: :true
   validates_attachment :image_homepage,
     content_type: { content_type: ["image/jpeg", "image/png"] },
     size: { in: 0..4.megabytes }

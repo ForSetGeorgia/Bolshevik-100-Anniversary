@@ -225,7 +225,6 @@ main {
       }
       .story-container {
         position: relative;
-        cursor: pointer;
       }
       .story-poster {
         img {
@@ -262,6 +261,7 @@ main {
 
           }
           .story-title {
+            padding: 10px;
             opacity: 0;
 
           }
@@ -296,6 +296,9 @@ main {
           }
         }
       }
+      &:not(.cs) .story-container {
+        cursor: pointer;
+      }
       &:not(.cs) .story-container:hover, &:not(.cs) .story-container.hover {
         .story-info {
           opacity: 1;
@@ -307,19 +310,16 @@ main {
             height: 100%;
           }
           .story-title {
-            font: 18px caviar_dreams_r;
+            font: 18px caviar_dreams_b;
             color: #f0e8d8;
             padding: 30px 15px 0;
             flex: 1;
           }
           .story-author {
-            font: 12px playfair_display_r;
+            font: 16px playfair_display_r;
             color: #f9ce08;
             padding: 0 30px 15px;
-            span {
-              font: 14px playfair_display_r;
-
-            }
+            white-space: nowrap;
           }
           .story-explore {
             font: 14px caviar_dreams_b;
@@ -346,6 +346,9 @@ main {
           -moz-transition: all .15s linear;
           -webkit-transition: all .15s linear;
         }
+        .story-container {
+          cursor: default;
+        }
         .story-container:hover, .story-container.hover {
           .story-info {
             background-color: rgba(245, 206, 32, 0.6);
@@ -364,7 +367,7 @@ main {
             top: 50%;
             left: 50%;
             transform: translate( -50%, -50%);
-            font: 18px caviar_dreams_r;
+            font: 18px caviar_dreams_b;
             color: #f3ede4;
             text-align: center;
             width: 80%;
@@ -537,7 +540,7 @@ footer {
         &:not(.cs) .story-container:hover, &:not(.cs) .story-container.hover {
           .story-info {
             .story-title {
-              font: 20px caviar_dreams_r;
+              font: 20px caviar_dreams_b;
             }
             .story-explore { display: none; }
           }
@@ -545,7 +548,7 @@ footer {
         &.cs {
           .story-container:hover, .story-container.hover {
             .story-title {
-              font: 20px caviar_dreams_r;
+              font: 20px caviar_dreams_b;
             }
           }
         }
@@ -587,6 +590,8 @@ footer {
       padding:0 50px 0 30px;
       max-width: 992px;
       p {
+        font: 20px playfair_display_r;
+        color: #2e2e2e;
         padding-bottom: 30px;
       }
     }
@@ -602,13 +607,25 @@ footer {
         flex-direction: row;
         order: 1;
         .about {
-          display: block;
-          font: 22px caviar_dreams_b;
-          color: #fff;
-          width: 100%;
-          background-color: #4571b1;
-          padding: 85px 0 85px 30px;
+          display: flex;
+          flex-direction: row;
+          span {
+            display: inline-block;
+            font: 22px caviar_dreams_b;
+            color: #fff;
+            width: 100%;
+            background-color: #4571b1;
+            padding: 85px 0 85px 30px;
+          }
           margin-bottom: 8px;
+          img {
+            display: inline-block;
+            content: "";
+            width: 14px;
+            height: 38px;
+            background: url("<%= asset_path('blue_arrow.png') %>") no-repeat;
+            align-self: center;
+          }
         }
       }
       .content {
