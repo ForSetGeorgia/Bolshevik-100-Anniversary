@@ -401,7 +401,7 @@ end
 private
 
 def sudo_ssh_cmd(task)
-  "ssh #{get_sudo_user(task)}@#{domain} -t -p #{ssh_port}"
+  "ssh -i #{identity_file} #{get_sudo_user(task)}@#{domain} -t -p #{ssh_port}"
 end
 
 def get_sudo_user(task)
