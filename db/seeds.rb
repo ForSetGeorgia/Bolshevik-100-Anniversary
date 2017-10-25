@@ -40,6 +40,10 @@ p = PageContent.create(
   title: 'About The Red Legacy',
   content:  "<p>The Bolshevik coup occurred on October 25 or November 7, 1917, depending on what calendar you go by. It was a revolution by no means accomplished in a day - some argue it took over a decade to play out. It ended up bequeathing to the world Soviet-style communism.</p><p>The centennial of what Soviet historians portrayed as the Great October Socialist Revolution is not receiving much attention in Russia today. But regardless of how it is being publicly commemorated there, it remains one of the key pivot points of the 20th century --an event that shaped international relations for subsequent decades, and which continues to exert tremendous social, economic and political influence over Eurasia.</p><p>A more thorough understanding of the October Revolution's impact can be helpful in making sense of current affairs. Thus, <a href='http://www.eurasianet.org/' target='_blank'>Eurasianet</a> is presenting The Red Legacy, a special project in which leading scholars and experts from the United States, Europe and Russia examine various aspects of the October Revolution and highlight trends and issues that connect the past to the present.</p><p>The Red Legacy gets its name from the red banner of communism under which Vladimir Lenin and his cohorts acted in 1917, and from the Red Army, which kept the Bolsheviks in power during the tumultuous years that followed their seizure of power.</p><p>Starting on October 25, Eurasianet will add an analysis article every day to The Red Legacy until November 7. We hope you enjoy it.</p>"
 )
+Globalize.with_locale(:ru) do
+  p.title = "О проекте «Наследие Октября»"
+  p.save
+end
 
 puts 'Destory about images'
 AboutImage.destroy_all

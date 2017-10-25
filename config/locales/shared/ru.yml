@@ -65,7 +65,7 @@ ru:
     story_show:
       image_caption: "%{cap}"
       image_credit: "( Фото: %{credit} )"
-      poster_title: Click to view full image
+      poster_title: Просмотр в полноэкранном режиме
       by: By
       credit: Credit
       next: Следующая статья
