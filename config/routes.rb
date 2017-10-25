@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :users, constraints: { format: :html }
       resources :page_contents, constraints: { format: :html }
       resources :stories, constraints: { format: :html }
+      resources :about_images, constraints: { format: :html }
     end
 
     root 'root#index'

@@ -13,9 +13,9 @@ class Ability
       can :manage, :all
     elsif user.is? 'site_admin'
       init_site_admin_abilities(content_resources)
-      init_page_section
     elsif user.is? 'content_manager'
       can :manage, content_resources
+      init_page_section
     end
 
     # Actions everyone can do:
@@ -25,6 +25,7 @@ class Ability
   def init_site_admin_abilities(content_resources)
     can :manage, content_resources
     can [:read, :edit, :update], PageContent
+    can :manage, AboutImage
     can :manage, User
     can :manage, Role
     can :manage, Story
@@ -34,5 +35,6 @@ class Ability
 
   def init_page_section
     can [:read, :edit, :update], PageContent
+    can [:read, :edit, :update], AboutImage
   end
 end

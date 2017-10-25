@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024065553) do
+ActiveRecord::Schema.define(version: 20171025080000) do
+
+  create_table "about_image_translations", force: :cascade do |t|
+    t.integer  "about_image_id", limit: 4,   null: false
+    t.string   "locale",         limit: 255, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "image_caption",  limit: 255
+    t.string   "image_credit",   limit: 255
+  end
+
+  add_index "about_image_translations", ["about_image_id"], name: "index_about_image_translations_on_about_image_id", using: :btree
+  add_index "about_image_translations", ["locale"], name: "index_about_image_translations_on_locale", using: :btree
+
+  create_table "about_images", force: :cascade do |t|
+    t.integer  "position",              limit: 1,   default: 0
+    t.integer  "sort_order",            limit: 1,   default: 0
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "image_en_file_name",    limit: 255
+    t.string   "image_en_content_type", limit: 255
+    t.integer  "image_en_file_size",    limit: 4
+    t.datetime "image_en_updated_at"
+    t.string   "image_ru_file_name",    limit: 255
+    t.string   "image_ru_content_type", limit: 255
+    t.integer  "image_ru_file_size",    limit: 4
+    t.datetime "image_ru_updated_at"
+  end
+
+  add_index "about_images", ["position", "sort_order"], name: "index_about_images_on_position_and_sort_order", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false

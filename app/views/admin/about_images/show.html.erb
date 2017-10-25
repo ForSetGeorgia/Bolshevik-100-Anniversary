@@ -1,0 +1,17 @@
+<%
+page_title t('shared.common.show_title',
+             model: t('activerecord.models.about_image', count: 1),
+             title: @about_image.title)
+%>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/show_actions',
+        locals: {
+          object: @about_image,
+          index_path: admin_about_images_path,
+          show_path: admin_about_image_path,
+          edit_path: edit_admin_about_image_path
+                }
+  %>
+</div>
+

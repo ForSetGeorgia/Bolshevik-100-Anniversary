@@ -9,6 +9,7 @@ class RootController < ApplicationController
 
   def about
     @about = PageContent.find_by(name: 'about')
+    @images = AboutImage.sorted
   end
 
   def about_eurasianet
