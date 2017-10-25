@@ -23,10 +23,10 @@ ru:
       forset:
         motto: ForSet - Communicating with Data
       eurasianet:
-        motto: Eurasianet
+        motto: EurasiaNet.org – ведущий источник аналитических материалов о событиях в политической, экономической и общественной жизни в Евразии.
       name: Наследие Октября
       motto: Оценивая столетний юбилей Октябрьской революции
-      description: A 360-degree view of the Bolshevik Revolution in 1917 and its lasting legacy.
+      description: Панорамный обзор большевистской революции 1917 года и ее долгосрочных последствий.
       'no': 'No'
       'yes': 'Yes'
       show_title: "%{model}: %{title}"
