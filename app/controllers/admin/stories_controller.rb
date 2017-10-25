@@ -1,5 +1,7 @@
 class Admin::StoriesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_admin_story, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /admin/stories
   # GET /admin/stories.json

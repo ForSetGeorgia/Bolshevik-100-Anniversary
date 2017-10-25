@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   before_filter do |controller_instance|
     controller_instance.send(:valid_role?, ['super_admin', 'site_admin', 'content_manager'])
   end
+  authorize_resource
 
   def index
     respond_to do |format|

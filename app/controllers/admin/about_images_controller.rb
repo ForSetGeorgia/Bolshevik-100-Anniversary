@@ -1,5 +1,7 @@
 class Admin::AboutImagesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_about_image, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /admin/about_images
   # GET /admin/about_images.json
