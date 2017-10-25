@@ -1,4 +1,5 @@
 <% @is_story_page = controller_name == 'root' && action_name == 'story_show' %>
+<% @requre_swipebox = controller_name == 'root' && ['about', 'story_show'].index(action_name).present? %>
 <!DOCTYPE html>
 <html html="<%= I18n.locale %>">
   <%= render partial: 'application/head' %>

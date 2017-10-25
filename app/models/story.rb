@@ -75,7 +75,8 @@ class Story < AddMissingTranslation
   has_attached_file :image_story,
                     :url => "/system/story/:id/story/:style/:basename.:extension",
                     :styles => {
-                        :'thumb' => {:geometry => "200>"}
+                        :'thumb' => {:geometry => "200>"},
+                        :'pagination' => {:geometry => "130x130#"}
                     },
                     :convert_options => {
                       :'thumb' => '-quality 85'

@@ -49,10 +49,6 @@
           </div>
         </div>
       </div>
-      <div class="slideshow">
-        <%= link_to t('.previous'), story_show_path(@previous), title: @previous.title if @previous.present? %>
-        <%= link_to t('.next'), story_show_path(@next), title: @next.title if @next.present? %>
-      </div>
     </div>
   </div>
 </div>

@@ -2,8 +2,25 @@
   <div class="motto"><%= t('shared.common.motto') %></div>
   <div class="aside">
     <div class="poster-container">
-      <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;"></div>
+      <%= link_to @story.image_story.url, class: 'swipebox' do %>
+        <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;"></div>
+      <% end %>
       <div class="bg"></div>
+      <div class="pagination">
+        <div class="pagination-container">
+          <% @prev.each {|st| %>
+            <%= link_to story_show_path(st), class: 'prev', title: st.title do %>
+              <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
+            <% end %>
+          <% } %>
+          <div class="current">Current</div>
+          <% @next.each {|st| %>
+            <%= link_to story_show_path(st), class: 'next', title: st.title do %>
+              <%= image_tag(st.image_story.url(:pagination), alt: st.title) %>
+            <% end %>
+          <% } %>
+        </div>
+      </div>
     </div>
     <div class="lane">
       <div class="card">
@@ -43,10 +60,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="slideshow">
-        <%= link_to t('.previous'), story_show_path(@previous), title: @previous.title if @previous.present? %>
-        <%= link_to t('.next'), story_show_path(@next), title: @next.title if @next.present? %>
       </div>
     </div>
   </div>

@@ -18,20 +18,25 @@
 <p>Praesent eleifend non mauris ut posuere. Quisque eleifend, metus ut gravida pharetra, justo ligula iaculis dolor, a sollicitudin est elit sit amet diam. Nullam dui risus, blandit gravida molestie vitae, placerat ac felis. Nunc sagittis at erat at gravida. Aenean blandit leo massa. Suspendisse varius, ante non luctus tincidunt, nibh sapien tincidunt purus, in luctus ante odio vitae nibh. Nunc congue iaculis consectetur. Nullam nec blandit ante, in imperdiet nunc.</p>
 
 <p>Sed eu eros libero. Cras aliquet leo quis dolor luctus, eu maximus nisi tristique. Proin rutrum, velit vel tincidunt vehicula, augue augue pulvinar enim, vel vehicula ligula tellus eu eros. Donec vel eros eget nibh condimentum rhoncus non id quam. Vivamus volutpat justo ut nisl fermentum, eu ultricies erat ultricies. Donec eu ullamcorper lorem. Vestibulum et condimentum metus, non sollicitudin est.</p>" %>
+
 <div class="aside">
   <div class="col">
     <div class="about">ABOUT <br />THE PROJECT</div>
-    <div><%= image_tag('about/1.jpg') %></div>
-    <div><%= image_tag('about/2.jpg') %></div>
+    <% [1,2].each{|e| %>
+        <%= link_to asset_path("about/#{e}.jpg"), class: 'swipebox slide next', title: "#{e}" do %>
+          <%= image_tag("about/#{e}.jpg", alt: "#{e}") %>
+        <% end %>
+    <% } %>
   </div>
   <div class="col">
-    <div><%= image_tag('about/3.jpg') %></div>
-    <div><%= image_tag('about/4.jpg') %></div>
-    <div><%= image_tag('about/5.jpg') %></div>
+    <% [3,4,5].each{|e| %>
+        <%= link_to asset_path("about/#{e}.jpg"), class: 'swipebox slide next', title: "#{e}" do %>
+          <%= image_tag("about/#{e}.jpg", alt: "#{e}") %>
+        <% end %>
+    <% } %>
   </div>
 </div>
 <div class="content">
   <%= text.html_safe %>
   <%#= simple_format_no_tags @about.content, {}, sanitize: false %>
 </div>
-

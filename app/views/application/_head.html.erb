@@ -60,6 +60,7 @@
 
     css << 'admin' if params[:controller] != 'root'
     css << (@is_story_page ? 'story' : 'application')
+    css << 'swipebox' if @requre_swipebox
   %>
   <%= stylesheet_link_tag  *(css), :media => "all" %>
 
@@ -73,6 +74,9 @@
     else
       js << 'application'
     end
+    js << 'story' if @is_story_page
+    js << 'swipebox' if @requre_swipebox
+
   %>
   <%= javascript_include_tag *(js) %>
 

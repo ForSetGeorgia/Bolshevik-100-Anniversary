@@ -390,6 +390,7 @@ footer {
     vertical-align: top;
     padding-top: 10px;
     margin: 0 20px;
+    &.last { padding-top: 0; }
   }
   .separator {
     display: inline-block;
@@ -408,6 +409,10 @@ footer {
     .nav-logo-outer {
       margin-top: 20px;
       padding-left: 30px;
+      .nav-logo {
+        .small { display: none; }
+        .large { display: initial; }
+      }
       .nav-about {
         position: absolute;
         display: flex;
@@ -429,10 +434,7 @@ footer {
         }
       }
     }
-    .nav-logo {
-      .small { display: none; }
-      .large { display: initial; }
-    }
+
     .nav-motto {
       flex: 1;
       align-self: flex-end;
@@ -570,7 +572,7 @@ footer {
       .col {
         margin-right: 8px;
         flex: 1;
-        div {
+        a {
           margin-bottom: 8px;
           width: 100%;
           min-width: 200px;
@@ -606,6 +608,7 @@ footer {
           width: 100%;
           background-color: #4571b1;
           padding: 85px 0 85px 30px;
+          margin-bottom: 8px;
         }
       }
       .content {
