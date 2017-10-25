@@ -26,7 +26,7 @@ ru:
         motto: Eurasianet
       name: Наследие Октября
       motto: Оценивая столетний юбилей Октябрьской революции
-      description: This is a description of the project that will appear in the meta tags.
+      description: The Red Legacy presents a 360-degree view of the Bolshevik Revolution in 1917 and its lasting legacy. It features analysis from leading scholars in the United States, Europe and Russia.
       'no': 'No'
       'yes': 'Yes'
       show_title: "%{model}: %{title}"
