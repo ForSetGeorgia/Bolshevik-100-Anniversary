@@ -25,7 +25,7 @@ class Admin::StoriesController < ApplicationController
   # POST /admin/stories
   # POST /admin/stories.json
   def create
-    @story = Story.new(admin_story_params)
+    @story = Story.new(story_params)
 
     respond_to do |format|
       if @story.save
@@ -42,7 +42,7 @@ class Admin::StoriesController < ApplicationController
   # PATCH/PUT /admin/stories/1.json
   def update
     respond_to do |format|
-      if @story.update(admin_story_params)
+      if @story.update(story_params)
         format.html { redirect_to [:admin,@story], notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.page_content', count: 1))}
       else
@@ -69,8 +69,8 @@ class Admin::StoriesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_story_params
-      permitted = Story.globalize_attribute_names + [:is_published, :published_at, :sort_order, :image_homepage, :image_share, :image_story]
+    def story_params
+      permitted = Story.globalize_attribute_names + [:is_published, :published_at, :sort_order, :image_homepage, :image_share_en, :image_share_ru, :image_story]
       params.require(:story).permit(*permitted)
     end
 

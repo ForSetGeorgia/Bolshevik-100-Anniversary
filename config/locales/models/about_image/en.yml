@@ -1,0 +1,14 @@
+---
+en:
+  activerecord:
+    attributes:
+      about_image:
+        image_caption: Image Caption
+        image_credit: Image Credit
+        sort_order: Sort Order
+        position: Column Position
+        image: Image
+    models:
+      about_image:
+        one: About Image
+        other: About Images

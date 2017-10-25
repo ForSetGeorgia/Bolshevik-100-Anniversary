@@ -1,0 +1,40 @@
+<% object = @about_image %>
+<%= semantic_form_for [:admin,object], html: {multipart: true} do |f| %>
+  <%= f.semantic_errors *f.object.errors.keys %>
+  <%= f.inputs do %>
+    <%= render layout: 'shared/form/translated_inputs',
+               locals: { object: object } do |enabled_locale, enabled_locale_name| %>
+
+      <div class="file input optional form-group" id="about_image_image_<%= enabled_locale %>_input">
+        <span class="form-label">
+          <label for="about_image_image_<%= enabled_locale %>" class=" control-label"><%= t('shared.labels.translated_field',
+                               field: t('activerecord.attributes.about_image.image'),
+                               language: enabled_locale_name) %></label>
+        </span>
+        <% if @about_image.image(enabled_locale).exists? %>
+          <%= image_tag(@about_image.image(enabled_locale).url('thumb')) %>
+        <% end %>
+        <span class="form-wrapper">
+          <input id="about_image_image_<%= enabled_locale %>" accept="image/*" type="file" name="about_image[image_<%= enabled_locale %>]" />
+        </span>
+      </div>
+
+      <%= f.input "image_credit_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.about_image.image_credit'),
+                         language: enabled_locale_name) %>
+      <%= f.input "image_caption_#{enabled_locale}",
+                  label: t('shared.labels.translated_field',
+                         field: t('activerecord.attributes.about_image.image_caption'),
+                         language: enabled_locale_name) %>
+    <% end %>
+
+    <%= f.input :position, as: :radio, collection: [[t('shared.labels.left'), 0], [t('shared.labels.right'), 1]] %>
+    <%= f.input :sort_order %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, button_html: { class: 'btn btn-success' } %>
+  <% end %>
+<% end %>

@@ -39,8 +39,11 @@ en:
       page_contents: Edit Page Text
       admin: Admin Section
       stories: Stories
+      about_images: About Images
     labels:
       translated_field: "%{field} (%{language})"
+      left: Left
+      right: Right
     locale:
       short:
         en: En

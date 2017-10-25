@@ -1,0 +1,14 @@
+<% model_class = AboutImage %>
+<% page_title t('shared.actions.with_obj.edit',
+                obj: t('activerecord.models.about_image', count: 1)) %>
+
+<div class='actions-container'>
+  <%= render partial: 'shared/edit_actions',
+        locals: {
+          object: @about_image,
+          index_path: admin_about_images_path
+                }
+  %>
+</div>
+
+<%= render partial: 'form' %>

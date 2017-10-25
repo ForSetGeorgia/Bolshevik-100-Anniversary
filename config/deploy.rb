@@ -227,7 +227,7 @@ namespace :deploy do
       system %[echo "-----> RSyncing remote assets (tmp/assets) \
                      with local assets (#{precompiled_assets_dir})"]
 
-      system %(rsync #{rsync_verbose} -e 'ssh -p #{ssh_port}' \
+      system %(rsync #{rsync_verbose} -e 'ssh -i #{identity_file} -p #{ssh_port}' \
                  --recursive --times --delete ./#{precompiled_assets_dir}/. \
                  #{user}@#{domain}:#{deploy_to}/tmp/assets)
     end
@@ -258,7 +258,7 @@ task setup: :environment do
   end
 
   unless env_exists
-    system %(scp -P #{ssh_port} .env.example \
+    system %(scp -i #{identity_file} -P #{ssh_port} .env.example \
                #{user}@#{domain}:#{temp_env_example_path})
   end
 
@@ -401,7 +401,7 @@ end
 private
 
 def sudo_ssh_cmd(task)
-  "ssh #{get_sudo_user(task)}@#{domain} -t -p #{ssh_port}"
+  "ssh -i #{identity_file} #{get_sudo_user(task)}@#{domain} -t -p #{ssh_port}"
 end
 
 def get_sudo_user(task)
