@@ -55,13 +55,7 @@ class Story < AddMissingTranslation
   #######################
   ## ATTACHED FILE
   has_attached_file :image_homepage,
-                    :url => "/system/story/:id/homepage/:style/:basename.:extension",
-                    # :styles => {
-                    #     :'thumb' => {:geometry => "200>"}
-                    # },
-                    :convert_options => {
-                      :'thumb' => '-quality 85'
-                    }
+                    :url => "/system/story/:id/homepage/:style/:basename.:extension"
 
   has_attached_file :image_share_en,
                     :url => "/system/story/:id/share/en/:style/:basename.:extension",
