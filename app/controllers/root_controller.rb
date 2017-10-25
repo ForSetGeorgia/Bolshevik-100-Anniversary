@@ -12,11 +12,6 @@ class RootController < ApplicationController
     @images = AboutImage.sorted
   end
 
-  def about_eurasianet
-    @show_page_title = false
-    @about = PageContent.find_by(name: 'about_eurasianet')
-  end
-
   def stories
     redirect_to root_path
   end
