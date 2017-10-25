@@ -41,17 +41,16 @@ class AboutImage < ActiveRecord::Base
   #######################
   ## SCOPES
   scope :sorted, -> { order('position asc, sort_order asc') }
-  scope :only_left, -> { with_translations(I18n.locale).where(position: 0) }
-  scope :only_right, -> { with_translations(I18n.locale).where(position: 1) }
+  scope :only_left, -> { where(position: 0) }
+  scope :only_right, -> { where(position: 1) }
 
   #######################
   ## METHODS
 
   def image(locale=I18n.locale)
     locale = locale.to_sym
-    locale = I18n.locale if !I18n.available_locales.include?(locale)
-
-    return locale == :en ? image_en : image_ru
+    locale = I18n.I18n.default_locale if !I18n.available_locales.include?(locale)
+    return locale == :en ? image_en : image_ru.present? ? image_ru : image_en
   end
 
 end
