@@ -4,7 +4,6 @@ class RootController < ApplicationController
     @show_page_title = false
     @stories = Story.sorted
     @about = PageContent.only_title.find_by(name: 'about')
-    @about_eurasianet = PageContent.only_title.find_by(name: 'about_eurasianet')
   end
 
   def about
