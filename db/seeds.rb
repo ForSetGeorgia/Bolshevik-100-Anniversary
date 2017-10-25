@@ -35,7 +35,7 @@ end
 PageContent.find_or_create_by(name: 'about') do |pc|
   puts 'creating page content for about'
   pc.title = 'About Red Legacy'
-  pc.content = "<p>The Bolshevik coup occurred on October 25 or November 7, 1917, depending on what calendar you go by. It was a revolution by no means accomplished in a day - some argue it took over a decade to play out. It ended up bequeathing to the world Soviet-style communism.</p><p>The centennial of what Soviet historians portrayed as the Great October Socialist Revolution is not receiving much attention in Russia today. But regardless of how it is being publicly commemorated there, it remains one of the key pivot points of the 20th century --an event that shaped international relations for subsequent decades, and which continues to exert tremendous social, economic and political influence over Eurasia.</p><p>A more thorough understanding of the October Revolution's impact can be helpful in making sense of current affairs. Thus, Eurasianet is presenting The Red Legacy, a special project in which leading scholars and experts from the United States, Europe and Russia examine various aspects of the October Revolution and highlight trends and issues that connect the past to the present.</p><p>The Red Legacy gets its name from the red banner of communism under which Vladimir Lenin and his cohorts acted in 1917, and from the Red Army, which kept the Bolsheviks in power during the tumultuous years that followed their seizure of power.</p><p>Starting on October 25, Eurasianet will add an analysis article every day to The Red Legacy until November 7. We hope you enjoy it.</p>"
+  pc.content = "<p>The Bolshevik coup occurred on October 25 or November 7, 1917, depending on what calendar you go by. It was a revolution by no means accomplished in a day - some argue it took over a decade to play out. It ended up bequeathing to the world Soviet-style communism.</p><p>The centennial of what Soviet historians portrayed as the Great October Socialist Revolution is not receiving much attention in Russia today. But regardless of how it is being publicly commemorated there, it remains one of the key pivot points of the 20th century --an event that shaped international relations for subsequent decades, and which continues to exert tremendous social, economic and political influence over Eurasia.</p><p>A more thorough understanding of the October Revolution's impact can be helpful in making sense of current affairs. Thus, <a href='http://www.eurasianet.org/' target='_blank'>Eurasianet</a> is presenting The Red Legacy, a special project in which leading scholars and experts from the United States, Europe and Russia examine various aspects of the October Revolution and highlight trends and issues that connect the past to the present.</p><p>The Red Legacy gets its name from the red banner of communism under which Vladimir Lenin and his cohorts acted in 1917, and from the Red Army, which kept the Bolsheviks in power during the tumultuous years that followed their seizure of power.</p><p>Starting on October 25, Eurasianet will add an analysis article every day to The Red Legacy until November 7. We hope you enjoy it.</p>"
 end
 
 
@@ -56,7 +56,7 @@ stories = [
   { title: { en: "Bolshevism's Legacy for the Oil Industry", ru: "" }, is_wide: true, author: { en: "Doug Rogers", ru: "" } },
   { title: { en: "A Legacy of 1917: A Lingering Imperial Situation", ru: "" }, author: { en: "Unknown", ru: "" } },
   # eurasianet about
-  { title: { en: "About EurasiaNet.org", ru: "О сайте EurasiaNet.org" }, author: { en: nil, ru: nil }, image_id: 99, content: { en: '<p>Eurasianet is a non-profit, independent news organization that produces features and analysis about contemporary developments in Eurasia.</p><p>We present a variety of perspectives about these developments, utilizing a network of correspondents based both in the West and in the region. We strive to fulfill a traditional watchdog function, publishing stories that provide useful context for ongoing policy debates, while seeking to hold authorities accountable for their actions.</p><p>Based in New York, Eurasianet is hosted by Columbia University’s Harriman Institute, one of the leading centers in North America of scholarship concerning Eurasia.</p>', ru: "" } }
+  { title: { en: "About EurasiaNet.org", ru: "О сайте EurasiaNet.org" }, author: { en: nil, ru: nil }, image_id: 99, content: { en: '<p>Eurasianet is a non-profit, independent news organization that produces features and analysis about contemporary developments in Eurasia.</p><p>We present a variety of perspectives about these developments, utilizing a network of correspondents based both in the West and in the region. We strive to fulfill a traditional watchdog function, publishing stories that provide useful context for ongoing policy debates, while seeking to hold authorities accountable for their actions.</p><p>Based in New York, Eurasianet is hosted by Columbia University’s Harriman Institute, one of the leading centers in North America of scholarship concerning Eurasia.</p><p>Find us on <a href="https://twitter.com/EurasiaNet" target="_blank">Twitter</a>, <a href="https://www.facebook.com/EurasiaNet/" target="_blank">Facebook</a>, <a href="https://www.instagram.com/eurasianet/" target="_blank">Instagram</a>, <a href="https://www.youtube.com/channel/UCguYqb3BpHecqB5UPuuKd4Q" target="_blank">YouTube</a>, and at <a href="http://eurasianet.org/" target="_blank">Eurasianet.org</a>.</p>', ru: "" } }
 ]
 
 stories.each_with_index {|story, story_i|
@@ -71,20 +71,21 @@ stories.each_with_index {|story, story_i|
     title: story[:title][:en],
     title_home: story[:title][:en],
     title_share: story[:title][:en],
-    description_share: story[:title][:en],
-    content: dummy_text,
+    # description_share: story[:title][:en],
+    content: story[:content].present? ? story[:content][:en] : nil,
     author: story[:author][:en],
     sort_order: story_i + 1,
-    image_caption: story[:title][:en],
-    image_credit: "Image Credit",
-    author_organization: "Eurasianet",
-    subheader: "Subheader",
+    # image_caption: story[:title][:en],
+    # image_credit: "Image Credit",
+    # author_organization: "Eurasianet",
+    # subheader: "Subheader",
     footnotes: "Footnotes",
     image_homepage: image,
     image_share: image_share,
     image_story:image_story,
     is_wide: story[:is_wide].present?,
     is_published: [0, 1].sample
+    # is_published: false
   )
   I18n.locale = :ru
   image_share = File.new("#{Rails.root}/public/_stories/share/#{I18n.locale}/#{image_id}.jpg", "r")
