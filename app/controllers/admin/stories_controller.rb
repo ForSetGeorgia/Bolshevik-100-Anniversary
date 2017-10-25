@@ -1,5 +1,7 @@
 class Admin::StoriesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_admin_story, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /admin/stories
   # GET /admin/stories.json
@@ -29,7 +31,7 @@ class Admin::StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to [:admin,@story], notice: t('shared.msgs.success_created',
+        format.html { redirect_to admin_stories_path, notice: t('shared.msgs.success_created',
                             obj: t('activerecord.models.page_content', count: 1))}
       else
         set_date
@@ -43,7 +45,7 @@ class Admin::StoriesController < ApplicationController
   def update
     respond_to do |format|
       if @story.update(story_params)
-        format.html { redirect_to [:admin,@story], notice: t('shared.msgs.success_updated',
+        format.html { redirect_to admin_stories_path, notice: t('shared.msgs.success_updated',
                             obj: t('activerecord.models.page_content', count: 1))}
       else
         set_date

@@ -7,7 +7,7 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    content_resources = []
+    content_resources = [Story]
 
     if user.is? 'super_admin'
       can :manage, :all
@@ -24,11 +24,9 @@ class Ability
 
   def init_site_admin_abilities(content_resources)
     can :manage, content_resources
-    can [:read, :edit, :update], PageContent
-    can :manage, AboutImage
+    init_page_section
     can :manage, User
     can :manage, Role
-    can :manage, Story
     cannot :manage, User, role: { name: 'super_admin' }
     cannot :manage, Role, name: 'super_admin'
   end

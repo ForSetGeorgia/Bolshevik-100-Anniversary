@@ -93,7 +93,7 @@
         <label for="story_image_homepage" class=" control-label"><%= t('activerecord.attributes.story.image_homepage') %></label>
       </span>
       <% if object.image_homepage.exists? %>
-        <%= image_tag(object.image_homepage.url('thumb')) %>
+        <%= image_tag(object.image_homepage.url) %>
       <% end %>
       <span class="form-wrapper">
         <input accept=".jpg,.jpeg,.png,.gif" id="story_image_homepage" name="story[image_homepage]" type="file">
