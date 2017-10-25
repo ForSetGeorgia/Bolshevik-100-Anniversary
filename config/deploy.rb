@@ -258,7 +258,7 @@ task setup: :environment do
   end
 
   unless env_exists
-    system %(scp -P #{ssh_port} .env.example \
+    system %(scp -i #{identity_file} -P #{ssh_port} .env.example \
                #{user}@#{domain}:#{temp_env_example_path})
   end
 
