@@ -3,18 +3,19 @@
 <ul class="grid">
   <% ln = @stories.length %>
   <%- @stories.sorted.each_with_index do |story, story_i| %>
-    <% story_classes =  [] %>
-    <% story_classes << 'cs' unless story.is_published? %>
-    <% story_classes << 'w' if story.is_wide? %>
-    <% story_classes << 'vt' if story_i >= 6 # last 6 vertical-align -> top%>
-    <% story_classes << 'wm' if story_i == 5 || story_i == 11 # story poster 6 and 12 without right margin %>
-
-    <li class="<%= story_classes.join(' ') %>">
+    <%
+      story_classes =  []
+      story_classes << 'cs' unless story.is_published?
+      story_classes << 'w' if story.is_wide?
+      story_classes << 'vt' if story_i >= 6 # last 6 vertical-align -> top
+      story_classes << 'wm' if story_i == 5 || story_i == 11 # story poster 6 and 12 without right margin
+      li_klass = story_classes.present? ? story_classes.join(' ') : nil
+    %>
+    <%= content_tag(:li, class: li_klass) do %>
       <div class="story-container<%= story_i+1 == ln ? ' about-eurasianet' : '' %>">
         <div class="story-poster">
           <%= image_tag story.image_homepage %>
-        </div>
-        <div class="story-info">
+        </div><div class="story-info">
           <% if story.is_published? %>
             <%= link_to story_show_path(story), class: 'story-link' do %>
               <% if story_i + 1 == ln %>
@@ -34,6 +35,6 @@
           <% end %>
         </div>
       </div>
-    </li>
+    <% end %>
   <% end %>
 </ul>
