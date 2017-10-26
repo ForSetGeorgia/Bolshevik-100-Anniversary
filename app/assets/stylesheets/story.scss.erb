@@ -334,6 +334,10 @@ main {
       h1 { font: 22px playfair_display_r; }
       h2 { font: 20px playfair_display_r; }
       h3 { font: 18px playfair_display_r; }
+      img{
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
 }
@@ -362,6 +366,22 @@ footer {
   }
 }
 
+@media only screen and (max-width : 400px) {
+  main {
+    .container {
+      .aside {
+        .lane {
+          .card {
+            .title {
+              font-size: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
 @media only screen and (min-width : 992px) {
   nav {
     position: absolute;
@@ -514,6 +534,14 @@ footer {
             }
           }
 
+        }
+      }
+    }
+    .content {
+      .content-inner {
+        img{
+          max-width: inherit;
+          height: inherit;
         }
       }
     }
