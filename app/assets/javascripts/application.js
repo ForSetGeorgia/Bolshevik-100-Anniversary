@@ -31,8 +31,6 @@ $(document).ready(function () {
       e.stopPropagation();
     })
   } else {
-    $('.story-container').hover(function(e) {
-      $(this).toggleClass('hover');
-    })
+    $('.story-container').hover(function(e) { $(this).addClass('hover'); }, function (e) { $(this).removeClass('hover'); })
   }
 })
