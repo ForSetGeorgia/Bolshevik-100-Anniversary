@@ -2,7 +2,7 @@
 class RootController < ApplicationController
   def index
     @show_page_title = false
-    @stories = Story.sorted
+    @stories = Story.with_translations(I18n.locale).sorted
     @about = PageContent.only_title.find_by(name: 'about')
   end
 
@@ -33,7 +33,7 @@ class RootController < ApplicationController
 
       # get next/previous links
       # @next, @previous = nil
-      stories = Story.without_eurasianet_story.published.sorted
+      stories = Story.without_eurasianet_story.published.with_translations(I18n.locale).sorted
 
       story_index = stories.index{|x| x.id == @story.id}
 
