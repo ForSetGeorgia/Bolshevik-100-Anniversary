@@ -225,7 +225,9 @@ main {
       margin-bottom: 10px;
       font-size: 18px;
       &:nth-of-type(1), &:nth-of-type(4), &:nth-of-type(6), &:nth-of-type(8), &:nth-of-type(11) {
-        margin-right: 10px;
+        .story-container {
+          margin-right: 10px;
+        }
       }
       .story-container {
         position: relative;
@@ -522,7 +524,9 @@ footer {
     .grid {
       // overflow-x: auto;
       // list-style: none;
-      width: 1390px;
+      width: 100%;
+      min-width: 1390px;
+      max-width: 1920px;
       // margin: 0 auto;
       // font-size: 0;
       li {
@@ -530,14 +534,21 @@ footer {
         vertical-align: bottom;
         margin-top: 0;
         margin-bottom: 0;
-        margin-right: 10px;
+
+        width: 14.28%;
         // font-size: 18px;
         &.vt { // vertical align top
           margin-top: 10px;
           vertical-align: top;
         }
-        &.wm { // without margin
+        .story-container {
+          margin-right: 10px;
+        }
+        &.wm .story-container { // without margin
           margin-right: 0;
+        }
+        &.w {
+          width: 28.56%;
         }
         .story-link {
           pointer-events: all;
