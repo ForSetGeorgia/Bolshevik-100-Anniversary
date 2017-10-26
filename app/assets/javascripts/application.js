@@ -23,12 +23,16 @@ $(document).ready(function () {
     $(this).parent().toggleClass('active')
   })
   if (isTouchDevice()) {
-      var touchevent = ('ontouchstart' in window) ? 'touchstart' : ((window.DocumentTouch && document instanceof DocumentTouch) ? 'tap' : 'click');
-      $(document).on(touchevent, '.story-container', function(e) {
-        // console.log('test');
-        $(this).toggleClass('hover');
-        // e.stopPropagation();
-        // e.preventDefault();
-      })
-    }
+    var touchevent = ('ontouchstart' in window) ? 'touchstart' : ((window.DocumentTouch && document instanceof DocumentTouch) ? 'tap' : 'click');
+    $(document).on(touchevent, '.story-container', function(e) {
+      $(this).toggleClass('hover');
+    })
+    $(document).on(touchevent, '.story-explore', function(e) {
+      e.stopPropagation();
+    })
+  } else {
+    $('.story-container').hover(function(e) {
+      $(this).toggleClass('hover');
+    })
+  }
 })

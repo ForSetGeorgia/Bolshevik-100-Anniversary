@@ -186,8 +186,13 @@ main {
         z-index: 1;
         width: 100%;
         flex: 1;
-        a {
+        > a {
           display: initial;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
         }
         .poster {
           display: inline-block;
@@ -197,6 +202,7 @@ main {
           z-index: 2;
         }
         .bg {
+          display: none;
           position: absolute;
           top: 0;
           right: 0;
@@ -450,7 +456,15 @@ footer {
         flex-direction: column;
         flex: 1;
         .poster-container {
-          padding: 75px 110px 0 0;
+          // padding: 75px 110px 0 0;
+          > a {
+            display: initial;
+            top: 75px;
+            right: 110px;
+          }
+          .bg {
+            display: initial;
+          }
         }
         .lane {
           display: flex;

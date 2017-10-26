@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025085931) do
+ActiveRecord::Schema.define(version: 20171026070737) do
 
   create_table "about_image_translations", force: :cascade do |t|
     t.integer  "about_image_id", limit: 4,   null: false
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20171025085931) do
     t.string   "image_share_ru_content_type", limit: 255
     t.integer  "image_share_ru_file_size",    limit: 4
     t.datetime "image_share_ru_updated_at"
+    t.boolean  "is_eurasianet_story",                     default: false
   end
 
   add_index "stories", ["is_published", "published_at"], name: "index_stories_on_is_published_and_published_at", using: :btree

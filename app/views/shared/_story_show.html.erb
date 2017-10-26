@@ -11,7 +11,7 @@
         <div class="poster" style="background: url(<%= @story.image_story.url %>) top/cover no-repeat;" title="<%= t('.poster_title')%>"></div>
       <% end %>
       <div class="bg"></div>
-      <% if @story.slug != 'about-eurasianetorg' %>
+      <% if !@story.is_eurasianet_story %>
         <div class="pagination">
           <div class="pagination-container">
             <% if @prev.present? %>

@@ -33,7 +33,7 @@ class RootController < ApplicationController
 
       # get next/previous links
       # @next, @previous = nil
-      stories = Story.published.sorted#.only_title
+      stories = Story.without_eurasianet_story.published.sorted
 
       story_index = stories.index{|x| x.id == @story.id}
 

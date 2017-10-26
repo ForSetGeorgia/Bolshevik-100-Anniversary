@@ -76,11 +76,12 @@ stories = [
   { title: { en: "Bolshevism's Legacy for the Oil Industry", ru: "" }, is_wide: true, author: { en: "Doug Rogers", ru: "" } },
   { title: { en: "A Legacy of 1917: A Lingering Imperial Situation", ru: "" }, author: { en: "Unknown", ru: "" } },
   # eurasianet about
-  { title: { en: "About EurasiaNet.org", ru: "О сайте EurasiaNet.org" }, author: { en: nil, ru: nil }, image_id: 99, content: { en: '<p>Eurasianet is a non-profit, independent news organization that produces features and analysis about contemporary developments in Eurasia.</p><p>We present a variety of perspectives about these developments, utilizing a network of correspondents based both in the West and in the region. We strive to fulfill a traditional watchdog function, publishing stories that provide useful context for ongoing policy debates, while seeking to hold authorities accountable for their actions.</p><p>Based in New York, Eurasianet is hosted by Columbia University’s Harriman Institute, one of the leading centers in North America of scholarship concerning Eurasia.</p><p>Find us on <a href="https://twitter.com/EurasiaNet" target="_blank">Twitter</a>, <a href="https://www.facebook.com/EurasiaNet/" target="_blank">Facebook</a>, <a href="https://www.instagram.com/eurasianet/" target="_blank">Instagram</a>, <a href="https://www.youtube.com/channel/UCguYqb3BpHecqB5UPuuKd4Q" target="_blank">YouTube</a>, and at <a href="http://eurasianet.org/" target="_blank">Eurasianet.org</a>.</p>', ru: "" } }
+  { title: { en: "About EurasiaNet.org", ru: "О сайте EurasiaNet.org" }, author: { en: nil, ru: nil }, image_id: 99, content: { en: '<p>Eurasianet is a non-profit, independent news organization that produces features and analysis about contemporary developments in Eurasia.</p><p>We present a variety of perspectives about these developments, utilizing a network of correspondents based both in the West and in the region. We strive to fulfill a traditional watchdog function, publishing stories that provide useful context for ongoing policy debates, while seeking to hold authorities accountable for their actions.</p><p>Based in New York, Eurasianet is hosted by Columbia University’s Harriman Institute, one of the leading centers in North America of scholarship concerning Eurasia.</p><p>Find us on <a href="https://twitter.com/EurasiaNet" target="_blank">Twitter</a>, <a href="https://www.facebook.com/EurasiaNet/" target="_blank">Facebook</a>, <a href="https://www.instagram.com/eurasianet/" target="_blank">Instagram</a>, <a href="https://www.youtube.com/channel/UCguYqb3BpHecqB5UPuuKd4Q" target="_blank">YouTube</a>, and at <a href="http://eurasianet.org/" target="_blank">Eurasianet.org</a>.</p>', ru: "" }, is_eurasianet_story: true }
 ]
 
 stories.each_with_index {|story, story_i|
   image_id = story[:image_id].present? ? story[:image_id] : story_i+1
+  is_eurasianet_story = story[:is_eurasianet_story].present?
   content = story[:content].present? && story[:content][:en].present? ? story[:content][:en] : ''
   image = File.new("#{Rails.root}/public/_stories/home/#{image_id}.jpg", "r")
   image_story = File.new("#{Rails.root}/public/_stories/story/#{image_id}.jpg", "r")
@@ -105,7 +106,8 @@ stories.each_with_index {|story, story_i|
     image_share_ru: File.new("#{Rails.root}/public/_stories/share/ru/#{image_id}.jpg", "r"),
     image_story:image_story,
     is_wide: story[:is_wide].present?,
-    is_published: story_i+1 == stories.length
+    is_published: story_i+1 == stories.length,
+    is_eurasianet_story: is_eurasianet_story
   )
   # I18n.locale = :ru
   # image_share = File.new("#{Rails.root}/public/_stories/share/#{I18n.locale}/#{image_id}.jpg", "r")
