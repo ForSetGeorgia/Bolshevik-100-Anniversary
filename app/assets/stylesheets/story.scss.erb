@@ -234,7 +234,7 @@ main {
           margin: 0 auto;
           .title {
             padding: 40px 40px 0;
-            font: 28px caviar_dreams_b;
+            font: 28px caviar_dreams_r;
             color: #212921;
             text-align: center;
             text-transform: uppercase;
@@ -253,6 +253,7 @@ main {
           .tools-container {
             display: flex;
             flex-direction: row;
+            align-items: center;
             padding: 10px 0 10px 10px;
           }
           .col-fill {
@@ -337,6 +338,10 @@ main {
       img{
         max-width: 100%;
         height: auto;
+      }
+      .footnotes{
+        font: 20px playfair_display_r !important;
+        font-style: italic !important;
       }
     }
   }
@@ -504,6 +509,14 @@ footer {
             }
             .print {
               display: initial;
+              img{
+                opacity: 0.7;
+              }
+              &:hover{
+                img{
+                  opacity: 1;
+                }
+              }
             }
             .social {
               position: static;

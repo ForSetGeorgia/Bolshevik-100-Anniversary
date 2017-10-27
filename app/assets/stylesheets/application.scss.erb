@@ -250,8 +250,8 @@ main {
           width: 116px;
           height: 116px;
           border-radius: 100%;
-          background-color: #4571b1;
-          border: 8px solid #f5ce20;
+          background-color: rgba(69,113,177,0.9);
+          border: 8px solid rgba(245,206,32,0.5);
           .story-soon {
             position: absolute;
             top: 50%;
@@ -394,7 +394,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 55px;
   a {
     display: inline-block;
     font-size: 0;
@@ -648,13 +648,26 @@ footer {
         .about {
           display: flex;
           flex-direction: row;
-          span {
+          position: relative;
+          &::after{
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            margin-top: -20px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid #4571b1;
+            border-bottom: 20px solid transparent;
+            border-top: 20px solid transparent;
+           }
+           span {
             display: inline-block;
             font: 22px caviar_dreams_b;
             color: #fff;
             width: 100%;
             background-color: #4571b1;
-            padding: 85px 0 85px 30px;
+            padding: 60px 30px;
           }
           margin-bottom: 8px;
           img {
