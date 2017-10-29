@@ -223,6 +223,7 @@ main {
         position: relative;
         // height: 60px;
         z-index: 2;
+        padding: 0 20px;
         .card {
           order: 2;
           background-color: #fff;
@@ -325,7 +326,7 @@ main {
     background-color: #fff;
     .content-inner {
       max-width: 992px;
-      padding: 78px 10px;
+      padding: 39px 10px;
       margin: 0 auto;
       font: 20px playfair_display_r;
       color: #2e2e2e;
@@ -377,16 +378,42 @@ footer {
       .aside {
         .lane {
           .card {
+            height: 200px;
             .title {
               font-size: 22px;
+              padding: 30px 30px 0;
+            }
+            .author{
+              font-size: 14px;
             }
           }
         }
       }
     }
   }
-
 }
+
+@media only screen and (max-width : 350px) {
+  main {
+    .container {
+      .aside {
+        .lane {
+          .card {
+            /*height: 180px;*/
+            .title {
+              font-size: 19px;
+            }
+            .author{
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
 @media only screen and (min-width : 992px) {
   nav {
     position: absolute;
@@ -552,6 +579,7 @@ footer {
     }
     .content {
       .content-inner {
+        padding: 78px 10px;
         img{
           max-width: inherit;
           height: inherit;
