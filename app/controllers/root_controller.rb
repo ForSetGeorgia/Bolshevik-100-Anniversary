@@ -9,7 +9,7 @@ class RootController < ApplicationController
   def about
     @show_page_title = false
     @about = PageContent.find_by(name: 'about')
-    @images = AboutImage.sorted
+    @images = AboutImage.sorted.with_translations(I18n.locale)
   end
 
   def stories
