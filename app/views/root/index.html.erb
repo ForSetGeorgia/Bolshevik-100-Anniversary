@@ -1,5 +1,10 @@
 <% page_title t 'shared.common.name' %>
 
+<div class="about-site">
+  <%= t('.about1') %>
+  <span><%= t('.about2') %></span>
+</div>
+
 <ul class="grid">
   <% ln = @stories.length %>
   <%- @stories.sorted.each_with_index do |story, story_i| %>
