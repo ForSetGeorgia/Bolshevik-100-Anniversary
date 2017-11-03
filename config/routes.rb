@@ -15,7 +15,7 @@ Rails.application.routes.draw do
                path_names: {sign_in: 'login', sign_out: 'logout'},
                constraints: { format: :html }
 
-    match '/admin', :to => 'admin#index', :as => :admin, :via => :get
+    match '/admin', :to => 'admin#index', :as => :admin, :via => :get, constraints: { format: :html }
     namespace :admin do
       resources :users, constraints: { format: :html }
       resources :page_contents, constraints: { format: :html }
@@ -23,10 +23,10 @@ Rails.application.routes.draw do
       resources :about_images, constraints: { format: :html }
     end
 
-    root 'root#index'
-    get '/stories' => 'root#stories'
-    get '/stories/:id' => 'root#story_show', as: 'story_show'
-    get '/about' => 'root#about'
+    root 'root#index', constraints: { format: :html }
+    get '/stories' => 'root#stories', constraints: { format: :html }
+    get '/stories/:id' => 'root#story_show', as: 'story_show', constraints: { format: :html }
+    get '/about' => 'root#about', constraints: { format: :html }
 
     # handles /en/fake/path/whatever
     get '*path', to: redirect("/#{I18n.default_locale}")
