@@ -1,5 +1,8 @@
 # Non-resource pages
 class RootController < ApplicationController
+  # only allow html calls
+  respond_to :html
+
   def index
     @show_page_title = false
     @stories = Story.with_translations(I18n.locale).sorted
