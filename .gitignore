@@ -15,7 +15,7 @@
 /.gems
 /.env
 /public/assets
-/public/system
+#/public/system
 
 # Temporary files often end with ~ character
 *~
